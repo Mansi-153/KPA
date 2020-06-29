@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.example.kamdhenupashuahar.Fragments.DetailsOfUdhaar;
 import com.example.kamdhenupashuahar.Fragments.home;
 import com.example.kamdhenupashuahar.Fragments.purchasedetail;
 import com.example.kamdhenupashuahar.Fragments.udhaar;
@@ -78,7 +80,13 @@ public class MainActivity extends AppCompatActivity  {
                         ft.replace(R.id.fragment_place, frag);
                         ft.commit();
                         break;
-
+                    case R.id.checkUdhaar:
+                        frag = new DetailsOfUdhaar();
+                        fm = getFragmentManager();
+                        ft = fm.beginTransaction();
+                        ft.replace(R.id.fragment_place, frag);
+                        ft.commit();
+                        break;
 
                 }
 

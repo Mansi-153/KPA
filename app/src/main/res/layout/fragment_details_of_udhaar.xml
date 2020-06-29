@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:table="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Mansi"
+        android:textSize="24sp"
+        table:layout_constraintStart_toStartOf="parent"
+        table:layout_constraintTop_toTopOf="parent" />
+
+    <de.codecrafters.tableview.TableView
+        android:id="@+id/tableView"
+        android:layout_width="700dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        table:layout_constraintEnd_toEndOf="parent"
+        table:layout_constraintTop_toBottomOf="@+id/name"
+        table:tableView_columnCount="11" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</HorizontalScrollView>
