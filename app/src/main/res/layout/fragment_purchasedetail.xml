@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    tools:context=".Fragments.home">
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".Fragments.purchasedetail">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,7 +23,7 @@
                 app:cardCornerRadius="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/month_picker1">
+                app:layout_constraintTop_toBottomOf="@+id/button3">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -49,12 +49,14 @@
                         android:id="@+id/textView6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:text="Total Quantity ->"
                         android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView4"
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
                         android:id="@+id/textView7"
@@ -67,26 +69,6 @@
                         app:layout_constraintTop_toTopOf="@+id/textView6" />
 
                     <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Rate(per quintal)->"
-                        android:textSize="18sp"
-                        app:layout_constraintStart_toStartOf="@+id/textView6"
-                        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-                    <TextView
-                        android:id="@+id/textVie"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="600 Rs"
-                        android:textSize="15dp"
-                        app:layout_constraintStart_toEndOf="@+id/textView"
-                        app:layout_constraintTop_toTopOf="@+id/textView" />
-
-                    <TextView
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -96,8 +78,9 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/textView"
-                        app:layout_constraintTop_toBottomOf="@+id/textView" />
+                        app:layout_constraintStart_toStartOf="@+id/textView6"
+                        app:layout_constraintTop_toBottomOf="@+id/textView6"
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
                         android:id="@+id/textView9"
@@ -168,26 +151,6 @@
                         app:layout_constraintTop_toTopOf="@+id/textView61" />
 
                     <TextView
-                        android:id="@+id/textView1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Rate(per quintal)->"
-                        android:textSize="18sp"
-                        app:layout_constraintStart_toStartOf="@+id/textView61"
-                        app:layout_constraintTop_toBottomOf="@+id/textView61" />
-
-                    <TextView
-                        android:id="@+id/textVie1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="600 Rs"
-                        android:textSize="15dp"
-                        app:layout_constraintStart_toEndOf="@+id/textView1"
-                        app:layout_constraintTop_toTopOf="@+id/textView1" />
-
-                    <TextView
                         android:id="@+id/textView31"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -197,8 +160,8 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/textView1"
-                        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+                        app:layout_constraintStart_toStartOf="@+id/textView61"
+                        app:layout_constraintTop_toBottomOf="@+id/textView61" />
 
                     <TextView
                         android:id="@+id/textView91"
@@ -269,26 +232,6 @@
                         app:layout_constraintTop_toTopOf="@+id/textView612" />
 
                     <TextView
-                        android:id="@+id/textView12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Rate(per quintal)->"
-                        android:textSize="18sp"
-                        app:layout_constraintStart_toStartOf="@+id/textView612"
-                        app:layout_constraintTop_toBottomOf="@+id/textView612" />
-
-                    <TextView
-                        android:id="@+id/textVie12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="600 Rs"
-                        android:textSize="15dp"
-                        app:layout_constraintStart_toEndOf="@+id/textView12"
-                        app:layout_constraintTop_toTopOf="@+id/textView12" />
-
-                    <TextView
                         android:id="@+id/textView312"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -298,8 +241,8 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/textView12"
-                        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+                        app:layout_constraintStart_toStartOf="@+id/textView612"
+                        app:layout_constraintTop_toBottomOf="@+id/textView612" />
 
                     <TextView
                         android:id="@+id/textView912"
@@ -370,26 +313,6 @@
                         app:layout_constraintTop_toTopOf="@+id/textView6123" />
 
                     <TextView
-                        android:id="@+id/textView123"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Rate(per quintal)->"
-                        android:textSize="18sp"
-                        app:layout_constraintStart_toStartOf="@+id/textView6123"
-                        app:layout_constraintTop_toBottomOf="@+id/textView6123" />
-
-                    <TextView
-                        android:id="@+id/textVie123"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="600 Rs"
-                        android:textSize="15dp"
-                        app:layout_constraintStart_toEndOf="@+id/textView123"
-                        app:layout_constraintTop_toTopOf="@+id/textView123" />
-
-                    <TextView
                         android:id="@+id/textView3123"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -399,8 +322,8 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/textView123"
-                        app:layout_constraintTop_toBottomOf="@+id/textView123" />
+                        app:layout_constraintStart_toStartOf="@+id/textView6123"
+                        app:layout_constraintTop_toBottomOf="@+id/textView6123" />
 
                     <TextView
                         android:id="@+id/textView9123"
@@ -471,26 +394,6 @@
                         app:layout_constraintTop_toTopOf="@+id/textView61234" />
 
                     <TextView
-                        android:id="@+id/textView1234"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Rate(per quintal)->"
-                        android:textSize="18sp"
-                        app:layout_constraintStart_toStartOf="@+id/textView61234"
-                        app:layout_constraintTop_toBottomOf="@+id/textView61234" />
-
-                    <TextView
-                        android:id="@+id/textVie1234"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="600 Rs"
-                        android:textSize="15dp"
-                        app:layout_constraintStart_toEndOf="@+id/textView1234"
-                        app:layout_constraintTop_toTopOf="@+id/textView1234" />
-
-                    <TextView
                         android:id="@+id/textView31234"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -500,8 +403,8 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/textView1234"
-                        app:layout_constraintTop_toBottomOf="@+id/textView1234" />
+                        app:layout_constraintStart_toStartOf="@+id/textView61234"
+                        app:layout_constraintTop_toBottomOf="@+id/textView61234" />
 
                     <TextView
                         android:id="@+id/textView91234"
@@ -572,26 +475,6 @@
                         app:layout_constraintTop_toTopOf="@+id/textView612345" />
 
                     <TextView
-                        android:id="@+id/textView12345"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Rate(per quintal)->"
-                        android:textSize="18sp"
-                        app:layout_constraintStart_toStartOf="@+id/textView612345"
-                        app:layout_constraintTop_toBottomOf="@+id/textView612345" />
-
-                    <TextView
-                        android:id="@+id/textVie12345"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="600 Rs"
-                        android:textSize="15dp"
-                        app:layout_constraintStart_toEndOf="@+id/textView12345"
-                        app:layout_constraintTop_toTopOf="@+id/textView12345" />
-
-                    <TextView
                         android:id="@+id/textView312345"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -601,20 +484,21 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/textView12345"
-                        app:layout_constraintTop_toBottomOf="@+id/textView12345" />
+                        app:layout_constraintStart_toStartOf="@+id/textView612345"
+                        app:layout_constraintTop_toBottomOf="@+id/textView612345" />
 
                     <TextView
                         android:id="@+id/textView912345"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="4dp"
                         android:text="3000 Rs"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/textView312345"
                         app:layout_constraintStart_toEndOf="@+id/textView312345"
-                        app:layout_constraintTop_toTopOf="@+id/textView312345" />
+                        app:layout_constraintTop_toTopOf="@+id/textView312345"
+                        app:layout_constraintVertical_bias="0.0" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
@@ -674,26 +558,6 @@
                         app:layout_constraintTop_toTopOf="@+id/textView6123456" />
 
                     <TextView
-                        android:id="@+id/textView123456"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Rate(per quintal)->"
-                        android:textSize="18sp"
-                        app:layout_constraintStart_toStartOf="@+id/textView6123456"
-                        app:layout_constraintTop_toBottomOf="@+id/textView6123456" />
-
-                    <TextView
-                        android:id="@+id/textVie123456"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="600 Rs"
-                        android:textSize="15dp"
-                        app:layout_constraintStart_toEndOf="@+id/textView123456"
-                        app:layout_constraintTop_toTopOf="@+id/textView123456" />
-
-                    <TextView
                         android:id="@+id/textView3123456"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -703,30 +567,30 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/textView123456"
-                        app:layout_constraintTop_toBottomOf="@+id/textView123456" />
+                        app:layout_constraintStart_toStartOf="@+id/textView6123456"
+                        app:layout_constraintTop_toBottomOf="@+id/textView6123456" />
 
                     <TextView
                         android:id="@+id/textView9123456"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"
                         android:text="3000 Rs"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/textView3123456"
                         app:layout_constraintStart_toEndOf="@+id/textView3123456"
-                        app:layout_constraintTop_toTopOf="@+id/textView3123456" />
+                        app:layout_constraintTop_toTopOf="@+id/textView3123456"
+                        app:layout_constraintVertical_bias="0.0" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
-
 
 
             <ImageView
                 android:id="@+id/month_picker1"
                 android:layout_width="65dp"
                 android:layout_height="48dp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="15dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -736,16 +600,49 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="8dp"
                 android:text="12/07/2020"
                 android:textColor="#0288D1"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/month_picker1"
                 app:layout_constraintStart_toEndOf="@+id/month_picker1"
                 app:layout_constraintTop_toTopOf="@+id/month_picker1" />
 
+            <ImageView
+                android:id="@+id/month_picker2"
+                android:layout_width="65dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="30dp"
+                app:layout_constraintStart_toEndOf="@+id/textView8"
+                app:layout_constraintTop_toTopOf="@+id/month_picker1"
+                app:srcCompat="@drawable/cal4" />
+
+            <TextView
+                android:id="@+id/textView88"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="12/07/2020"
+                android:textColor="#0288D1"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/month_picker2"
+                app:layout_constraintStart_toEndOf="@+id/month_picker2"
+                app:layout_constraintTop_toTopOf="@+id/month_picker2" />
+
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="+Purchase"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/month_picker2" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+    </ScrollView>

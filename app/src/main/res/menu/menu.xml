@@ -9,43 +9,21 @@
         <item android:id="@+id/home"
             android:title="HOME"/>
         <item
-            android:id="@+id/sales"
-            android:title="SALES" />
+            android:id="@+id/updatepricelist"
+            android:title="UPDATE PRICELIST" />
         <item
-            android:id="@+id/purchases"
-            android:title="PURCHASES" />
+            android:id="@+id/udhaar"
+            android:title="UDHAAR" />
 
     </group>
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/customer"
-            android:title="RECIEVABLE" />
-        <item
-            android:id="@+id/supplier"
-            android:title="PAYABLE" />
+            android:id="@+id/purchasedetail"
+            android:title="PURCHASE DETAILS" />
 
     </group>
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/cash"
-            android:title="CASH" />
-        <item
-            android:id="@+id/bank1"
-            android:title="BANK" />
-        <item
-            android:id="@+id/comselect"
-            android:title="CHANGE COMPANY" />
-        <item
-            android:id="@+id/TDSREC"
-            android:title="TDS RECIEVABLE" />
-        <item
-            android:id="@+id/GOODS"
-            android:title="GOODS" />
-        <item
-            android:id="@+id/OUTPUT"
-            android:title="OUTPUT SERVICES" />
-    </group>
+
     <!--Search view widget as item in menu-->
 
 </menu>
