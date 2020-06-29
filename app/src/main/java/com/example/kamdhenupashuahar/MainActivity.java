@@ -8,8 +8,10 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
-import android.widget.AdapterView;
+import android.widget.Toast;
+
 
 public class MainActivity extends AppCompatActivity  {
     transient DrawerLayout drawerLayout;
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toast.makeText(MainActivity.this, "Welcome Back !!!", Toast.LENGTH_SHORT).show();
         setToolbar();
         navigationView=findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity  {
 
                 switch (id) {
                     case R.id.home:
+                        Log.d("SessionId4Status" , "guvsuv");
 
 
                         break;

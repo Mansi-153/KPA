@@ -40,7 +40,7 @@
                 android:id="@+id/fragment_place"
                 tools:layout="@layout/fragment_home"
                 app:layout_constraintHorizontal_bias="0.0"
-                android:name="com.example.kamdhenupashuahar.Home"/>
+                android:name="com.example.kamdhenupashuahar.home"/>
 
         </FrameLayout>
 
