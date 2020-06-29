@@ -6,7 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.example.kamdhenupashuahar.Fragments.home;
 import com.google.android.material.navigation.NavigationView;
+
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -18,11 +24,19 @@ public class MainActivity extends AppCompatActivity  {
     Toolbar toolbar;
     NavigationView navigationView;
     ActionBarDrawerToggle actionBar;
+    FragmentManager fm;
+    FragmentTransaction ft;
+    Fragment frag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toast.makeText(MainActivity.this, "Welcome Back !!!", Toast.LENGTH_SHORT).show();
+        frag = new home();
+        fm = getFragmentManager();
+        ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_place, frag);
+        ft.commit();
         setToolbar();
         navigationView=findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -34,8 +48,12 @@ public class MainActivity extends AppCompatActivity  {
                 switch (id) {
                     case R.id.home:
                         Log.d("SessionId4Status" , "guvsuv");
-
-
+                        frag = new home();
+                        fm = getFragmentManager();
+                        ft = fm.beginTransaction();
+                        ft.replace(R.id.fragment_place, frag);
+                        ft.addToBackStack(null);
+                        ft.commit();
                         break;
                     case R.id.sales:
 

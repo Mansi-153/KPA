@@ -31,16 +31,17 @@
 
             </androidx.appcompat.widget.Toolbar>
 
-            <FrameLayout android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="50dp"
+            <FrameLayout
                 android:id="@+id/fragment_place"
-                tools:layout="@layout/fragment_home"
+                android:name="com.example.kamdhenupashuahar.home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                android:name="com.example.kamdhenupashuahar.home"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout="@layout/fragment_home" />
 
         </FrameLayout>
 
