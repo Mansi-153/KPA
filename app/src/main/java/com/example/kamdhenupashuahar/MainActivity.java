@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.kamdhenupashuahar.Fragments.home;
 import com.google.android.material.navigation.NavigationView;
 
 import android.app.Fragment;
@@ -23,16 +24,19 @@ public class MainActivity extends AppCompatActivity  {
     Toolbar toolbar;
     NavigationView navigationView;
     ActionBarDrawerToggle actionBar;
+    FragmentManager fm;
+    FragmentTransaction ft;
+    Fragment frag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Fragment frag= new home();
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
+        frag = new home();
+        fm = getFragmentManager();
+        ft = fm.beginTransaction();
         ft.replace(R.id.fragment_place, frag);
-        ft.addToBackStack(null);
         ft.commit();
+
         Toast.makeText(MainActivity.this, "Welcome Back !!!", Toast.LENGTH_SHORT).show();
         setToolbar();
         navigationView=findViewById(R.id.navigationView);
@@ -45,7 +49,12 @@ public class MainActivity extends AppCompatActivity  {
                 switch (id) {
                     case R.id.home:
                         Log.d("SessionId4Status" , "guvsuv");
+                        frag = new home();
+                        fm = getFragmentManager();
+                        ft = fm.beginTransaction();
 
+                        ft.replace(R.id.fragment_place, frag);
+                        ft.commit();
 
                         break;
                     case R.id.sales:
