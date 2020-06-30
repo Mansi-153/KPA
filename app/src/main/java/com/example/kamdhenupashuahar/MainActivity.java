@@ -1,6 +1,7 @@
 package com.example.kamdhenupashuahar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,7 +13,13 @@ import com.example.kamdhenupashuahar.Fragments.home;
 import com.example.kamdhenupashuahar.Fragments.purchasedetail;
 import com.example.kamdhenupashuahar.Fragments.udhaar;
 import com.example.kamdhenupashuahar.Fragments.updatepricelist;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -21,10 +28,20 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity  {
     transient DrawerLayout drawerLayout;
     Toolbar toolbar;
+    FirebaseFirestore db;
     NavigationView navigationView;
     ActionBarDrawerToggle actionBar;
     FragmentManager fm;
@@ -34,6 +51,7 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        db = FirebaseFirestore.getInstance();
         frag = new home();
         fm = getFragmentManager();
         ft = fm.beginTransaction();
@@ -81,6 +99,7 @@ public class MainActivity extends AppCompatActivity  {
                         ft.commit();
                         break;
                     case R.id.checkUdhaar:
+//                        add();
                         frag = new DetailsOfUdhaar();
                         fm = getFragmentManager();
                         ft = fm.beginTransaction();
@@ -107,5 +126,21 @@ public class MainActivity extends AppCompatActivity  {
         drawerLayout.addDrawerListener(actionBar);
         actionBar.syncState();
 
+    }
+
+
+   public void add(){
+        Map<String, Object> user = new HashMap<>();
+        user.put("Date", "26/06/20");
+        user.put("Quantity", 100);
+        user.put("Price", 1815);
+        user.put("Total", 1000);
+        user.put("Type", true);
+
+        ArrayList<Map<String, Object>> ArraySales = new ArrayList<Map<String, Object>>();
+        ArraySales.add(user);
+// Add a new document with a generated ID
+        db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("SalesPurchase").document("TABLE1")
+                .set(ArraySales, SetOptions.merge());
     }
 }

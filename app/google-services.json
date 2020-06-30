@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "32077984921",
+    "firebase_url": "https://kamdhenupashuahar-20637.firebaseio.com",
+    "project_id": "kamdhenupashuahar-20637",
+    "storage_bucket": "kamdhenupashuahar-20637.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32077984921:android:0f1e55f39c27eb2359b408",
+        "android_client_info": {
+          "package_name": "com.example.kamdhenupashuahar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "32077984921-s63e6v8vnn8k8tqbs9k3umth9l9u169j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kamdhenupashuahar",
+            "certificate_hash": "1c7f6cb5529bc0bf086eb7545cc5b6985963bcce"
+          }
+        },
+        {
+          "client_id": "32077984921-me04qslebu4kem6gdajq4p5rfs1lgg26.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpiJIwq545yVa66P601XKyjLYJH3j9Z80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "32077984921-me04qslebu4kem6gdajq4p5rfs1lgg26.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
