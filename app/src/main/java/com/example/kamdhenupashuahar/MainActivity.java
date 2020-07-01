@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.kamdhenupashuahar.Fragments.DetailsOfUdhaar;
+import com.example.kamdhenupashuahar.Fragments.PurchaseAddition;
 import com.example.kamdhenupashuahar.Fragments.home;
 import com.example.kamdhenupashuahar.Fragments.purchasedetail;
 import com.example.kamdhenupashuahar.Fragments.udhaar;
@@ -84,6 +85,14 @@ public class MainActivity extends AppCompatActivity  {
                         ft.replace(R.id.fragment_place, frag);
                         ft.commit();
                         break;
+                    case R.id.purchaseaddition:
+                        read();
+                        frag = new PurchaseAddition();
+                        fm = getFragmentManager();
+                        ft = fm.beginTransaction();
+                        ft.replace(R.id.fragment_place, frag);
+                        ft.commit();
+                        break;
                     case R.id.udhaar:
                         frag = new udhaar();
                         fm = getFragmentManager();
@@ -130,15 +139,16 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
-   public void add(){
+    public void add(){
         Map<String, Object> user = new HashMap<>();
         user.put("Date", "26/06/20");
-        user.put("Quantity", 100);
+        user.put("Quantity", 200);
         user.put("Price", 1915);
         user.put("Total", 1000);
         user.put("Type", true);
        // Add a new document with a generated ID
         db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("SalesPurchase").document("TABLE1").update("ArraySales", FieldValue.arrayUnion(user));
+        //collection("Database").document("irytBOPTVitXVRh5vB51").
     }
     public void read(){
         DocumentReference docRef =db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("SalesPurchase").document("TABLE1");
@@ -159,3 +169,7 @@ public class MainActivity extends AppCompatActivity  {
         });
     }
 }
+
+//https://firestore.googleapis.com/v1beta1/projects/kamdhenupashuahar-20637/databases/(default)/documents/Database/irytBOPTVitXVRh5vB51
+
+

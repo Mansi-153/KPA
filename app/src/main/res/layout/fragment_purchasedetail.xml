@@ -18,12 +18,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
 
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="100dp"
                 app:cardBackgroundColor="#FA73BFE2"
                 app:cardCornerRadius="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button3">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -93,6 +93,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/textView3"
                         app:layout_constraintStart_toEndOf="@+id/textView3"
                         app:layout_constraintTop_toTopOf="@+id/textView3" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
@@ -630,17 +631,6 @@
                 app:layout_constraintBottom_toBottomOf="@+id/month_picker2"
                 app:layout_constraintStart_toEndOf="@+id/month_picker2"
                 app:layout_constraintTop_toTopOf="@+id/month_picker2" />
-
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="+Purchase"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/month_picker2" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

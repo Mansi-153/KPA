@@ -12,6 +12,9 @@
             android:id="@+id/updatepricelist"
             android:title="UPDATE PRICELIST" />
         <item
+            android:id="@+id/purchaseaddition"
+            android:title="ADD PURCHASE" />
+        <item
             android:id="@+id/udhaar"
             android:title="UDHAAR" />
         <item
