@@ -9,6 +9,18 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="@+id/searchView"
+                app:layout_constraintEnd_toEndOf="@+id/searchView"
+                app:layout_constraintStart_toStartOf="@+id/searchView"
+                app:layout_constraintTop_toTopOf="@+id/searchView" />
+
             <SearchView
                 android:id="@+id/searchView"
                 android:layout_width="0dp"
@@ -16,10 +28,13 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="20dp"
+                android:background="@drawable/border"
                 android:tooltipText="Search Customer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+            </SearchView>
 
             <Button
                 android:id="@+id/button"
@@ -36,7 +51,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
-                android:layout_height="500dp"
+                android:layout_height="600dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="20dp"
@@ -46,6 +61,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/button">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/parent2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -93,7 +109,7 @@
                         app:layout_constraintStart_toStartOf="@+id/name"
                         app:layout_constraintTop_toBottomOf="@+id/quantity" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/bhusaQ"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -102,25 +118,23 @@
                         app:layout_constraintStart_toStartOf="@+id/quantity"
                         app:layout_constraintTop_toTopOf="@+id/textView5" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/bhusaP"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
                         app:layout_constraintEnd_toEndOf="@+id/price"
                         app:layout_constraintStart_toStartOf="@+id/price"
                         app:layout_constraintTop_toTopOf="@+id/bhusaQ" />
 
-                    <TextView
-                        android:id="@+id/sarsoQ"
+                    <EditText
+                        android:id="@+id/sarsoP"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
                         app:layout_constraintEnd_toEndOf="@+id/alsiP"
                         app:layout_constraintStart_toStartOf="@+id/alsiP"
-                        app:layout_constraintTop_toTopOf="@+id/sarsoP" />
+                        app:layout_constraintTop_toTopOf="@+id/sarsoQ" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/masoorQ"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -129,8 +143,8 @@
                         app:layout_constraintStart_toStartOf="@+id/chokarQ"
                         app:layout_constraintTop_toTopOf="@+id/textView22" />
 
-                    <TextView
-                        android:id="@+id/sarsoP"
+                    <EditText
+                        android:id="@+id/sarsoQ"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
@@ -149,16 +163,15 @@
                         app:layout_constraintStart_toStartOf="@+id/textView14"
                         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/alsiP"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
                         app:layout_constraintEnd_toEndOf="@+id/kuttiP"
                         app:layout_constraintStart_toStartOf="@+id/kuttiP"
                         app:layout_constraintTop_toTopOf="@+id/alsiQ" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/alsiQ"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -178,16 +191,15 @@
                         app:layout_constraintStart_toStartOf="@+id/textView17"
                         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/kuttiP"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
                         app:layout_constraintEnd_toEndOf="@+id/arharP"
                         app:layout_constraintStart_toStartOf="@+id/arharP"
                         app:layout_constraintTop_toTopOf="@+id/kuttiQ" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/kuttiQ"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -207,16 +219,15 @@
                         app:layout_constraintStart_toStartOf="@+id/textView20"
                         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/arharP"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
                         app:layout_constraintEnd_toEndOf="@+id/masoorP"
                         app:layout_constraintStart_toStartOf="@+id/masoorP"
                         app:layout_constraintTop_toTopOf="@+id/arharQ" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/arharQ"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -236,11 +247,10 @@
                         app:layout_constraintStart_toStartOf="@+id/textView22"
                         app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/masoorP"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
                         app:layout_constraintEnd_toEndOf="@+id/chokarP"
                         app:layout_constraintStart_toStartOf="@+id/chokarP"
                         app:layout_constraintTop_toTopOf="@+id/masoorQ" />
@@ -265,7 +275,7 @@
                         app:layout_constraintStart_toStartOf="@+id/textView5"
                         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/chokarQ"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -274,11 +284,10 @@
                         app:layout_constraintStart_toStartOf="@+id/bhusaQ"
                         app:layout_constraintTop_toTopOf="@+id/textView23" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/chokarP"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
                         app:layout_constraintEnd_toEndOf="@+id/bhusaP"
                         app:layout_constraintStart_toStartOf="@+id/bhusaP"
                         app:layout_constraintTop_toTopOf="@+id/chokarQ" />
@@ -294,7 +303,48 @@
                         app:layout_constraintEnd_toEndOf="@+id/textView11"
                         app:layout_constraintStart_toStartOf="@+id/textView11"
                         app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+                    <EditText
+                        android:id="@+id/totalVal"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="150dp"
+                        android:text="89"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView26"
+                        app:layout_constraintStart_toEndOf="@+id/textView26"
+                        app:layout_constraintTop_toTopOf="@+id/textView26" />
+
+                    <TextView
+                        android:id="@+id/textView27"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="Paid"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/textView26"
+                        app:layout_constraintStart_toStartOf="@+id/textView26"
+                        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+                    <EditText
+                        android:id="@+id/bal"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="45"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView27"
+                        app:layout_constraintStart_toStartOf="@+id/totalVal"
+                        app:layout_constraintTop_toTopOf="@+id/textView27" />
+
+                    <Button
+                        android:id="@+id/up"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="UPDATE"
+                        app:layout_constraintBottom_toBottomOf="@+id/parent2"
+                        app:layout_constraintEnd_toEndOf="@+id/bal"
+                        app:layout_constraintStart_toStartOf="@+id/bal" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
