@@ -1,5 +1,6 @@
 package com.example.kamdhenupashuahar.Fragments;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
@@ -7,8 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kamdhenupashuahar.R;
@@ -21,6 +25,7 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -29,17 +34,44 @@ import androidx.annotation.NonNull;
 
 
 public class udhaar extends Fragment {
+    ImageView fr;
+    TextView date;
+    String today,toyear,tomonth;
+    private DatePickerDialog.OnDateSetListener onDateSetListener;
 EditText bQ,bP,cQ,cP,aQ,aP,mP,mQ,kP,kQ,akQ,akP,skP,skQ,tt,bal;
 SessionActivity sessionActivity;
 FirebaseFirestore db;
 Button button,up;
+View root;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         sessionActivity = new SessionActivity(getActivity());
         db = FirebaseFirestore.getInstance();
-        View root = inflater.inflate(R.layout.fragment_udhaar, container, false);
+         root = inflater.inflate(R.layout.fragment_udhaar, container, false);
+        //Getting present date
+        Calendar cal = Calendar.getInstance();
+        today=String.valueOf(cal.get(Calendar.DATE));
+        if(today.length()==1){
+            today="0"+today;
+        }
+        toyear = String.valueOf(cal.get(Calendar.YEAR));
+        tomonth =String.valueOf(1+(cal.get(Calendar.MONTH)));
+        if(tomonth.length()==1){
+            tomonth="0"+tomonth;
+        }
+        date=root.findViewById(R.id.textView8);
+        date.setText(today+"/"+tomonth+"/"+toyear);
+        //Date picker At WORK
+        setNormalPicker(inflater,container);
+
+
+
+
+
+
+
         bQ  = root.findViewById(R.id.bhusaQ);
         bP  = root.findViewById(R.id.bhusaP);
         cQ  = root.findViewById(R.id.chokarQ);
@@ -185,4 +217,41 @@ Button button,up;
         // Add a new document with a generated ID
         db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Udhaar").document("kushagra").update("Array", FieldValue.arrayUnion(user));
     }
+    private void setNormalPicker(LayoutInflater inflater, ViewGroup container) {
+
+        fr=root.findViewById(R.id.month_picker1);
+
+        fr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pichlafrom1=date.getText().toString();
+
+                Integer yy2=Integer.parseInt(pichlafrom1.substring(6,10));
+                Integer mm2=Integer.parseInt(pichlafrom1.substring(3,5));
+                Integer dd2=Integer.parseInt(pichlafrom1.substring(0,2));
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),R.style.Theme_AppCompat_DayNight_Dialog_MinWidth,onDateSetListener,yy2,(mm2-1),dd2);
+                datePickerDialog.show();
+
+            }
+        });
+        onDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int dayi) {
+                today=String.valueOf(dayi);
+                tomonth=String.valueOf(month+1);
+                toyear=String.valueOf(year);
+                if(today.length()==1){
+                    today="0"+today;
+                }
+                if(tomonth.length()==1){
+                    tomonth="0"+tomonth;
+                }
+                date.setText(today+"/"+tomonth+"/"+toyear);
+
+            }
+        };
+
+    }
+
+
 }

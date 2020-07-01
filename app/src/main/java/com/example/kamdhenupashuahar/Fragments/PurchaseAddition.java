@@ -5,7 +5,6 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +17,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-
-import com.example.kamdhenupashuahar.MainActivity;
 import com.example.kamdhenupashuahar.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,8 +25,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.SetOptions;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -137,11 +131,7 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
         ft.commit();
     }
 
-
-
-
-
-    //functions for adding according to type
+    //function for adding according to type
     private void Add(String qy, String pri, final String Type)
     {
         Map<String, Object> user = new HashMap<>();
@@ -179,11 +169,6 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
         });
 
     }
-
-
-
-
-
 
     private void setNormalPicker(LayoutInflater inflater, ViewGroup container) {
 
