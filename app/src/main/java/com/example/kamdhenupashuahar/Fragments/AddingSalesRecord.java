@@ -1,21 +1,214 @@
 package com.example.kamdhenupashuahar.Fragments;
 
+import android.app.DatePickerDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-
 import android.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.example.kamdhenupashuahar.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddingSalesRecord extends Fragment {
-
+    View root;
+    FirebaseFirestore db;
+    ImageView fr;
+    Button add;
+    TextView date;
+    EditText Bqty,Bprice,Cqty,Cprice,Mqty,Mprice,Aqty,Aprice,AKqty,AKprice,SKqty,SKprice,Kqty,Kprice;
+    String today,toyear,tomonth;
+    private DatePickerDialog.OnDateSetListener onDateSetListener;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_adding_sales_record, container, false);
+        root= inflater.inflate(R.layout.fragment_adding_sales_record, container, false);
+        Initialization();
+        //Date picker At WORK
+        setNormalPicker(inflater,container);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                work();
+
+            }
+        });
+        return root;
+    }
+
+   private void work()
+   {
+     if(!(Bqty.getText().toString().isEmpty()&&Bprice.getText().toString().isEmpty()))
+     { String type="Bhoosa";
+       Add(Bqty.getText().toString(),Bprice.getText().toString(),type);
+     }
+
+       if(!(Aqty.getText().toString().isEmpty()&&Aprice.getText().toString().isEmpty()))
+       { String type="Arhar";
+           Add(Aqty.getText().toString(),Aprice.getText().toString(),type);
+       }
+
+       if(!(Mqty.getText().toString().isEmpty()&&Mprice.getText().toString().isEmpty()))
+       { String type="Masoor";
+           Add(Mqty.getText().toString(),Mprice.getText().toString(),type);
+       }
+
+       if(!(AKqty.getText().toString().isEmpty()&&AKprice.getText().toString().isEmpty()))
+       { String type="Alsi Khari";
+           Add(AKqty.getText().toString(),AKprice.getText().toString(),type);
+       }
+
+       if(!(SKqty.getText().toString().isEmpty()&&SKprice.getText().toString().isEmpty()))
+       { String type="Sarso Khali";
+           Add(SKqty.getText().toString(),SKprice.getText().toString(),type);
+       }
+
+       if(!(Cqty.getText().toString().isEmpty()&&Cprice.getText().toString().isEmpty()))
+       { String type="Chokar";
+           Add(Cqty.getText().toString(),Cprice.getText().toString(),type);
+       }
+
+       if(!(Kqty.getText().toString().isEmpty()&&Kprice.getText().toString().isEmpty()))
+       { String type="Kutti";
+           Add(Kqty.getText().toString(),Kprice.getText().toString(),type);
+       }
+
+       //add the intent and toast
+       Toast.makeText(getActivity(),"Added Successfully In Records !!",Toast.LENGTH_SHORT).show();
+       FragmentManager fm;
+       FragmentTransaction ft;
+       Fragment frag;
+       frag = new AddingSalesRecord();
+       fm = getFragmentManager();
+       ft = fm.beginTransaction();
+       ft.replace(R.id.fragment_place, frag);
+       ft.commit();
+   }
+
+    private void Add(String qy, String pri, final String Type)
+    {
+        Map<String, Object> user = new HashMap<>();
+        user.put("Date",toyear+tomonth+today);
+        user.put("Quantity",Float.parseFloat(qy));
+        user.put("Price",Float.parseFloat(pri));
+        user.put("Total",Float.parseFloat(qy)*Float.parseFloat(pri));
+        user.put("Type",true);
+        // Add a new document with a generated ID
+        db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("SalesPurchase").document(Type).update("ArraySales", FieldValue.arrayUnion(user));
+        //now Add data to update Stock
+//for this firstly read data from the stock then add the quantity from it and update it with write command.
+        final Double[] stock = new Double[1];
+        final String str=qy;
+        DocumentReference docRef =db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d("mansiiiiiiiiiiiiiiiiiii", "DocumentSnapshot data: " + document.getData());
+                        //  Double stock;
+                        stock[0] =document.getDouble(Type);
+                        stock[0]=stock[0]-Double.parseDouble(str);
+                        db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock")
+                                .update(Type, stock[0]);
+                    } else {
+                        Log.d("", "No such document");
+                    }
+                } else {
+                    Log.d("", "get failed with ", task.getException());
+                }
+            }
+        });
+
+    }
+
+    private void setNormalPicker(LayoutInflater inflater, ViewGroup container) {
+
+        fr=root.findViewById(R.id.month_picker1);
+
+        fr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pichlafrom1=date.getText().toString();
+
+                Integer yy2=Integer.parseInt(pichlafrom1.substring(6,10));
+                Integer mm2=Integer.parseInt(pichlafrom1.substring(3,5));
+                Integer dd2=Integer.parseInt(pichlafrom1.substring(0,2));
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),R.style.Theme_AppCompat_DayNight_Dialog_MinWidth,onDateSetListener,yy2,(mm2-1),dd2);
+                datePickerDialog.show();
+
+            }
+        });
+        onDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int dayi) {
+                today=String.valueOf(dayi);
+                tomonth=String.valueOf(month+1);
+                toyear=String.valueOf(year);
+                if(today.length()==1){
+                    today="0"+today;
+                }
+                if(tomonth.length()==1){
+                    tomonth="0"+tomonth;
+                }
+                date.setText(today+"/"+tomonth+"/"+toyear);
+
+            }
+        };
+
+    }
+    private void Initialization(){
+        //Setting Date
+        Calendar cal = Calendar.getInstance();
+        today=String.valueOf(cal.get(Calendar.DATE));
+        if(today.length()==1){
+            today="0"+today;
+        }
+        toyear = String.valueOf(cal.get(Calendar.YEAR));
+        tomonth =String.valueOf(1+(cal.get(Calendar.MONTH)));
+        if(tomonth.length()==1){
+            tomonth="0"+tomonth;
+        }
+        date=root.findViewById(R.id.textView8);
+        date.setText(today+"/"+tomonth+"/"+toyear);
+        // populating the editTexts and button and firestore
+        Bprice=root.findViewById(R.id.textView9);
+        Bqty=root.findViewById(R.id.textView7);
+        Cprice=root.findViewById(R.id.textView91);
+        Cqty=root.findViewById(R.id.textView71);
+        Aprice=root.findViewById(R.id.textView912);
+        Aqty=root.findViewById(R.id.textView712);
+        Mprice=root.findViewById(R.id.textView9123);
+        Mqty=root.findViewById(R.id.textView7123);
+        Kprice=root.findViewById(R.id.textView91234);
+        Kqty=root.findViewById(R.id.textView71234);
+        SKprice=root.findViewById(R.id.textView912345);
+        SKqty=root.findViewById(R.id.textView712345);
+        AKprice=root.findViewById(R.id.textView9123456);
+        AKqty=root.findViewById(R.id.textView7123456);
+        add=root.findViewById(R.id.add);
+        db = FirebaseFirestore.getInstance();
     }
 }

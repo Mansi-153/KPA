@@ -9,8 +9,14 @@
         <item android:id="@+id/home"
             android:title="HOME"/>
         <item
+            android:id="@+id/summary"
+            android:title="SUMMARY" />
+        <item
             android:id="@+id/updatepricelist"
             android:title="UPDATE PRICELIST" />
+        <item
+            android:id="@+id/addsalesrecord"
+            android:title="UPDATE SALES RECORD" />
         <item
             android:id="@+id/purchaseaddition"
             android:title="ADD PURCHASE" />
