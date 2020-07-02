@@ -30,7 +30,7 @@ SessionActivity sessionActivity;
         Kp = root.findViewById(R.id.editTextTextPersonName1234);
         Akp = root.findViewById(R.id.editTextTextPersonName12345);
         Skp = root.findViewById(R.id.editTextTextPersonName123456);
-        update = root.findViewById(R.id.button2);
+        update = root.findViewById(R.id.details);
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -13,16 +13,27 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
+        android:background="@drawable/border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        app:layout_constraintEnd_toEndOf="@+id/searchView2"
+        app:layout_constraintStart_toStartOf="@+id/searchView2"
+        app:layout_constraintTop_toBottomOf="@+id/searchView2"></ListView>
+
     <androidx.cardview.widget.CardView
+        android:id="@+id/card1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="20dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView2">
@@ -32,7 +43,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/name1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -51,7 +62,7 @@
                 android:text="Total Pending"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintStart_toEndOf="@+id/name1"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -61,12 +72,12 @@
                 android:layout_marginTop="35dp"
                 android:text="Bhusa"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintEnd_toEndOf="@+id/name1"
+                app:layout_constraintStart_toStartOf="@+id/name1"
+                app:layout_constraintTop_toBottomOf="@+id/name1" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="24,567"
@@ -75,7 +86,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/textView3"
                 app:layout_constraintStart_toStartOf="@+id/textView3"
-                app:layout_constraintTop_toTopOf="@+id/textView" />
+                app:layout_constraintTop_toTopOf="@+id/name1" />
 
             <TextView
                 android:id="@+id/bhusa"
@@ -86,11 +97,11 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textView4"
-                app:layout_constraintStart_toStartOf="@+id/textView6"
+                app:layout_constraintStart_toStartOf="@+id/balance"
                 app:layout_constraintTop_toTopOf="@+id/textView4" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -217,4 +228,5 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

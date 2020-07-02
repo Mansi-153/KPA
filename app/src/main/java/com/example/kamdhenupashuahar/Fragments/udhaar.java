@@ -2,15 +2,17 @@ package com.example.kamdhenupashuahar.Fragments;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,28 +25,39 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 
 
 public class udhaar extends Fragment {
     ImageView fr;
     TextView date;
     String today,toyear,tomonth;
+    CardView card;
     private DatePickerDialog.OnDateSetListener onDateSetListener;
-EditText bQ,bP,cQ,cP,aQ,aP,mP,mQ,kP,kQ,akQ,akP,skP,skQ,tt,bal;
+EditText bQ,bP,cQ,cP,aQ,aP,mP,mQ,kP,kQ,akQ,akP,skP,skQ,tt,bal,name1;
 SessionActivity sessionActivity;
 FirebaseFirestore db;
 Button button,up;
+ListView listView;
+ArrayList<String> arrayList1 = new ArrayList<>();
 View root;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         sessionActivity = new SessionActivity(getActivity());
@@ -65,21 +78,18 @@ View root;
         date.setText(today+"/"+tomonth+"/"+toyear);
         //Date picker At WORK
         setNormalPicker(inflater,container);
-
-
-
-
-
-
-
+        listView = root.findViewById(R.id.listView);
+        final ArrayAdapter arrayAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, arrayList1);
+        listView.setAdapter(arrayAdapter);
+        card = root.findViewById(R.id.card);
         bQ  = root.findViewById(R.id.bhusaQ);
         bP  = root.findViewById(R.id.bhusaP);
         cQ  = root.findViewById(R.id.chokarQ);
         cP = root.findViewById(R.id.chokarP);
-        aQ  = root.findViewById(R.id.arharQ);
-        aP = root.findViewById(R.id.arharP);
-        mQ = root.findViewById(R.id.masoorQ);
-        mP  = root.findViewById(R.id.masoorP);
+        aQ  = root.findViewById(R.id.masoorQ);
+        aP = root.findViewById(R.id.masoorP);
+        mQ = root.findViewById(R.id.masoor);
+        mP  = root.findViewById(R.id.arharP);
         kP  = root.findViewById(R.id.kuttiP);
         kQ    = root.findViewById(R.id.kuttiQ);
         akP = root.findViewById(R.id.alsiP);
@@ -88,6 +98,7 @@ View root;
         skQ = root.findViewById(R.id.sarsoQ);
         tt = root.findViewById(R.id.totalVal);
         bal = root.findViewById(R.id.bal);
+        name1 = root.findViewById(R.id.nameC);
 
         button = root.findViewById(R.id.button);
         up = root.findViewById(R.id.up);
@@ -98,14 +109,15 @@ View root;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                card.setVisibility(View.VISIBLE);
             }
         });
 
         up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                add();
+                add(String.valueOf(name1.getText()).toLowerCase(Locale.getDefault()));
+                Toast.makeText(getActivity(),"Data Succesfully Added", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -126,40 +138,51 @@ View root;
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                String charText = newText.toLowerCase(Locale.getDefault());
-                if(charText.length()>5)
-                read(charText);
+                arrayList1.clear();
+                final List<String> list = new ArrayList<>();
+                final String charText = newText.toLowerCase(Locale.getDefault());
+                db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Udhaar").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                   @Override
+                   public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                       if (task.isSuccessful()) {
+                           List<String> list = new ArrayList<>();
+                           list.clear();
+                           for (QueryDocumentSnapshot document : task.getResult()) {
+                               list.add(document.getId());
+                           }for(int i=0;i<list.size();i++){
+                               if(list.get(i).contains(charText)){
+                                   arrayList1.add(list.get(i));
+                               }
+                           }
+                           Log.d("mansiiiiii",arrayList1.toString());
+                           listView.setAdapter(arrayAdapter);
+
+                       } else {
+                           Log.d("mansiiii", "Error getting documents: ", task.getException());
+                       }
+                   }
+                });
                 return false;
             }
         });
-
-        return root;
-    }
-    public void read(String name){
-        DocumentReference docRef =db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Udhaar").document(name);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d("mansiiiiiiiiiiiiiiiiiii", "DocumentSnapshot data: " + document.getData());
-                    } else {
-                        Log.d("", "No such document");
-                    }
-                } else {
-                    Log.d("", "get failed with ", task.getException());
-                }
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String clickedItem=(String) listView.getItemAtPosition(position);
+                arrayList1.clear();
+                card.setVisibility(View.VISIBLE);
+                name1.setText(clickedItem);
             }
         });
+        return root;
     }
-    public void add(){
+    public void add(final String s){
         Integer[] arr = new Integer[14];
         arr[0]=Integer.parseInt(String.valueOf(bP.getText()));
-        arr[2]=Integer.parseInt(String.valueOf(bP.getText()));
-        arr[3]=Integer.parseInt(String.valueOf(cP.getText()));
-        arr[4]=Integer.parseInt(String.valueOf(cQ.getText()));
-        arr[1]=Integer.parseInt(String.valueOf(aP.getText()));
+        arr[1]=Integer.parseInt(String.valueOf(bQ.getText()));
+        arr[2]=Integer.parseInt(String.valueOf(cP.getText()));
+        arr[3]=Integer.parseInt(String.valueOf(cQ.getText()));
+        arr[4]=Integer.parseInt(String.valueOf(aP.getText()));
         arr[5]=Integer.parseInt(String.valueOf(aQ.getText()));
         arr[6]=Integer.parseInt(String.valueOf(mP.getText()));
         arr[7]=Integer.parseInt(String.valueOf(mQ.getText()));
@@ -175,48 +198,45 @@ View root;
             arrMap.put("BhoosaPrice",Integer.parseInt(String.valueOf(bP.getText())));
             arrMap.put("BhoosaQty",Integer.parseInt(String.valueOf(bQ.getText())));
             arr[0]=arrMap;
-        }if(!cQ.getText().equals("0")){
-            arrMap.clear();
-            arrMap.put("ChokarPrice",Integer.parseInt(String.valueOf(cP.getText())));
-            arrMap.put("ChokarQty",Integer.parseInt(String.valueOf(cQ.getText())));
-            arr[c++]=arrMap;
-        }if(!aQ.getText().equals("0")){
-            arrMap.clear();
-            arrMap.put("ArharPrice",Integer.parseInt(String.valueOf(aP.getText())));
-            arrMap.put("ArharQty",Integer.parseInt(String.valueOf(aQ.getText())));
-            arr[c++]=arrMap;
-        }if(!mQ.getText().equals("0")){
-            arrMap.clear();
-            arrMap.put("MasoorPrice",Integer.parseInt(String.valueOf(mP.getText())));
-            arrMap.put("MasoorQty",Integer.parseInt(String.valueOf(mQ.getText())));
-            arr[c++]=arrMap;
-        }if(!kQ.getText().equals("0")){
-            arrMap.clear();
-            arrMap.put("KuttiPrice",Integer.parseInt(String.valueOf(kP.getText())));
-            arrMap.put("KuttiQty",Integer.parseInt(String.valueOf(kQ.getText())));
-            arr[c++]=arrMap;
-        }if(!akQ.getText().equals("0")){
-            arrMap.clear();
-            arrMap.put("AlsiPrice",Integer.parseInt(String.valueOf(akP.getText())));
-            arrMap.put("AlsiQty",Integer.parseInt(String.valueOf(akQ.getText())));
-            arr[c++]=arrMap;
-        }if(!skQ.getText().equals("0")){
-            arrMap.clear();
-            arrMap.put("SarsoPrice",Integer.parseInt(String.valueOf(skP.getText())));
-            arrMap.put("SarsoQty",Integer.parseInt(String.valueOf(skQ.getText())));
-            arr[c++]=arrMap;
         }*/
-        int t =  Integer.parseInt(String.valueOf(tt.getText()));
-        int p =  Integer.parseInt(String.valueOf(bal.getText()));
-        Map<String, Object> user = new HashMap<>();
-        user.put("Date", "26/06/20");
+        final int t = arr[0]*arr[1]+arr[2]*arr[3]+arr[4]*arr[5]+arr[6]*arr[7]+arr[8]*arr[9]+arr[10]*arr[11]+arr[12]*arr[13];
+        tt.setText(String.valueOf(t));
+        final int p =  Integer.parseInt(String.valueOf(bal.getText()));
+        int b = t-p;
+        final Map<String, Object> user = new HashMap<>();
+        user.put("Date", toyear+tomonth+today);
         user.put("ItemInfo", Arrays.asList(arr));
         user.put("TotalAmount", t);
         user.put("TotalPaid", p);
+        final Map<String, Object> user2 = new HashMap<>();
+        user2.put("Array", Arrays.asList(user));
+        user2.put("TotalBal", b);
 
+        final DocumentReference docRef =db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Udhaar").document(s);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        docRef.update("Array", FieldValue.arrayUnion(user));
+                        double p1 = document.getDouble("TotalBal");
+                        docRef.update("TotalBal", p1+t-p);
+                    } else {
+                        docRef.set(user2);
+                    }
+                    Fragment frag = new udhaar();
+                    FragmentManager fm = getFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ft.replace(R.id.fragment_place, frag);
+                    ft.commit();
+                } else {
+                    Log.d("", "get failed with ", task.getException());
+                }
+            }
+        });
         // Add a new document with a generated ID
-        db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Udhaar").document("kushagra").update("Array", FieldValue.arrayUnion(user));
-    }
+        }
     private void setNormalPicker(LayoutInflater inflater, ViewGroup container) {
 
         fr=root.findViewById(R.id.month_picker1);
@@ -253,5 +273,24 @@ View root;
 
     }
 
+    /*   public void read(final String name){
+        DocumentReference docRef =db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Udhaar").document(name);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        card.setVisibility(View.VISIBLE);
+                        name1.setText(name);
+                    } else {
+                        Log.d("", "No such document");
+                    }
+                } else {
+                    Log.d("", "get failed with ", task.getException());
+                }
+            }
+        });
+    }*/
 
 }

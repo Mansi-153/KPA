@@ -61,7 +61,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/balance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -80,9 +80,9 @@
                     android:layout_marginLeft="8dp"
                     android:hint="7363 quntil"
                     android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView6"
-                    app:layout_constraintStart_toEndOf="@+id/textView6"
-                    app:layout_constraintTop_toTopOf="@+id/textView6" />
+                    app:layout_constraintBottom_toBottomOf="@+id/balance"
+                    app:layout_constraintStart_toEndOf="@+id/balance"
+                    app:layout_constraintTop_toTopOf="@+id/balance" />
 
                 <TextView
                     android:id="@+id/textView3"
@@ -94,8 +94,8 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/textView6"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6"
+                    app:layout_constraintStart_toStartOf="@+id/balance"
+                    app:layout_constraintTop_toBottomOf="@+id/balance"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <EditText

@@ -20,6 +20,9 @@
         <item
             android:id="@+id/checkUdhaar"
             android:title="CHECK UDHAAR" />
+        <item
+            android:id="@+id/viewStock"
+            android:title="VIEW STOCK" />
 
     </group>
 

@@ -50,11 +50,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/card"
                 android:layout_width="0dp"
-                android:layout_height="600dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="20dp"
+                android:visibility="invisible"
                 app:cardCornerRadius="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -65,13 +67,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/name"
+                    <EditText
+                        android:id="@+id/nameC"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="20dp"
-                        android:text="Name"
+                        android:hint="Enter Customer Name"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +88,7 @@
                         android:text="Quantity"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toStartOf="@+id/price"
-                        app:layout_constraintTop_toBottomOf="@+id/name" />
+                        app:layout_constraintTop_toBottomOf="@+id/nameC" />
 
                     <TextView
                         android:id="@+id/price"
@@ -106,7 +108,7 @@
                         android:text="Bhusa"
                         android:textColor="#4CAF50"
                         android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@+id/name"
+                        app:layout_constraintStart_toStartOf="@+id/nameC"
                         app:layout_constraintTop_toBottomOf="@+id/quantity" />
 
                     <EditText
@@ -135,7 +137,7 @@
                         app:layout_constraintTop_toTopOf="@+id/sarsoQ" />
 
                     <EditText
-                        android:id="@+id/masoorQ"
+                        android:id="@+id/masoor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
@@ -195,8 +197,8 @@
                         android:id="@+id/kuttiP"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="@+id/arharP"
-                        app:layout_constraintStart_toStartOf="@+id/arharP"
+                        app:layout_constraintEnd_toEndOf="@+id/masoorP"
+                        app:layout_constraintStart_toStartOf="@+id/masoorP"
                         app:layout_constraintTop_toTopOf="@+id/kuttiQ" />
 
                     <EditText
@@ -204,8 +206,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
-                        app:layout_constraintEnd_toEndOf="@+id/arharQ"
-                        app:layout_constraintStart_toStartOf="@+id/arharQ"
+                        app:layout_constraintEnd_toEndOf="@+id/masoorQ"
+                        app:layout_constraintStart_toStartOf="@+id/masoorQ"
                         app:layout_constraintTop_toTopOf="@+id/textView17" />
 
                     <TextView
@@ -220,20 +222,20 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
                     <EditText
-                        android:id="@+id/arharP"
+                        android:id="@+id/masoorP"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="@+id/masoorP"
-                        app:layout_constraintStart_toStartOf="@+id/masoorP"
-                        app:layout_constraintTop_toTopOf="@+id/arharQ" />
+                        app:layout_constraintEnd_toEndOf="@+id/arharP"
+                        app:layout_constraintStart_toStartOf="@+id/arharP"
+                        app:layout_constraintTop_toTopOf="@+id/masoorQ" />
 
                     <EditText
-                        android:id="@+id/arharQ"
+                        android:id="@+id/masoorQ"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
-                        app:layout_constraintEnd_toEndOf="@+id/masoorQ"
-                        app:layout_constraintStart_toStartOf="@+id/masoorQ"
+                        app:layout_constraintEnd_toEndOf="@+id/masoor"
+                        app:layout_constraintStart_toStartOf="@+id/masoor"
                         app:layout_constraintTop_toTopOf="@+id/textView20" />
 
                     <TextView
@@ -241,26 +243,26 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="30dp"
-                        android:text="Arhar"
+                        android:text="Masoor"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="@+id/textView22"
                         app:layout_constraintStart_toStartOf="@+id/textView22"
                         app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
                     <EditText
-                        android:id="@+id/masoorP"
+                        android:id="@+id/arharP"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="@+id/chokarP"
                         app:layout_constraintStart_toStartOf="@+id/chokarP"
-                        app:layout_constraintTop_toTopOf="@+id/masoorQ" />
+                        app:layout_constraintTop_toTopOf="@+id/masoor" />
 
                     <TextView
                         android:id="@+id/textView22"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="30dp"
-                        android:text="Masoor"
+                        android:text="Arhar"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="@+id/textView23"
                         app:layout_constraintTop_toBottomOf="@+id/textView23" />
@@ -339,10 +341,11 @@
                         android:id="@+id/up"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:text="UPDATE"
-                        app:layout_constraintBottom_toBottomOf="@+id/parent2"
                         app:layout_constraintEnd_toEndOf="@+id/bal"
-                        app:layout_constraintStart_toStartOf="@+id/bal" />
+                        app:layout_constraintStart_toStartOf="@+id/bal"
+                        app:layout_constraintTop_toBottomOf="@+id/bal" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
@@ -351,7 +354,8 @@
                 android:id="@+id/month_picker1"
                 android:layout_width="65dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/button"
@@ -362,14 +366,24 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="5dp"
                 android:text="12/07/2020"
                 android:textColor="#0288D1"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/month_picker1"
                 app:layout_constraintStart_toEndOf="@+id/month_picker1"
                 app:layout_constraintTop_toTopOf="@+id/month_picker1" />
+
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="0dp"
+                android:layout_height="400dp"
+                android:layout_marginStart="3dp"
+                app:layout_constraintEnd_toEndOf="@+id/textView16"
+                app:layout_constraintStart_toStartOf="@+id/searchView"
+                app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
