@@ -111,6 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="3000 Rs"
+                    android:textColor="#FFFFFF"
                     android:textColorHint="#A4FFFFFF"
                     android:textSize="14sp"
                     android:textStyle="bold"
@@ -650,6 +651,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="3000 Rs"
+                    android:textColor="#FFFFFF"
                     android:textColorHint="#D7FFFFFF"
                     android:textSize="14sp"
                     android:textStyle="bold"
@@ -672,13 +674,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/sales123456"></Button>
-
-
-
-
-
-
-
 
 
         <ImageView

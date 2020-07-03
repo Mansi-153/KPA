@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.example.kamdhenupashuahar.R;
+import com.example.kamdhenupashuahar.util.SessionActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -38,13 +39,14 @@ public class AddingSalesRecord extends Fragment {
     TextView date;
     EditText Bqty,Bprice,Cqty,Cprice,Mqty,Mprice,Aqty,Aprice,AKqty,AKprice,SKqty,SKprice,Kqty,Kprice;
     String today,toyear,tomonth;
+    SessionActivity sessionActivity;
     private DatePickerDialog.OnDateSetListener onDateSetListener;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root= inflater.inflate(R.layout.fragment_adding_sales_record, container, false);
-
+        sessionActivity = new SessionActivity(getActivity());
         Initialization();
         //Date picker At WORK
         setNormalPicker(inflater,container);
@@ -216,5 +218,13 @@ public class AddingSalesRecord extends Fragment {
         AKqty=root.findViewById(R.id.textView7123456);
         add=root.findViewById(R.id.add);
         db = FirebaseFirestore.getInstance();
+
+        /*Bprice.setText(String.valueOf(sessionActivity.getBPrice()));
+        Cprice.setText(String.valueOf(sessionActivity.getCPrice()));
+        Aprice.setText(String.valueOf(sessionActivity.getAPrice()));
+        Mprice.setText(String.valueOf(sessionActivity.getMPrice()));
+        Kprice.setText(String.valueOf(sessionActivity.getKPrice()));
+        AKprice.setText(String.valueOf(sessionActivity.getAkPrice()));
+        SKprice.setText(String.valueOf(sessionActivity.getSPrice()));*/
     }
 }
