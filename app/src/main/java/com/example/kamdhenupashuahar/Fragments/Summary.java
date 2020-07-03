@@ -3,6 +3,7 @@ package com.example.kamdhenupashuahar.Fragments;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,13 +37,15 @@ public class Summary extends Fragment {
     FirebaseFirestore db;
     View root;
     String today,toyear,tomonth,froday,fryear,frmonth;
-    TextView fr,to;
+    TextView fr,to,totalsalequant,totalpurchasequant,totalamntsale,totalamntpurchase;
     private DatePickerDialog.OnDateSetListener onDateSetListener;
     private DatePickerDialog.OnDateSetListener onDateSetListener1;
     public ArrayList NoOfEmp = new ArrayList();
-    public ArrayList test = new ArrayList();
     public ArrayList year = new ArrayList();
+    public ArrayList NoOfEmp1 = new ArrayList();
     int k=0;
+    int m=0;
+    float tqsale,tqpurchase,tasale,tapurchase;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,7 +54,7 @@ public class Summary extends Fragment {
         Initialization();
         //Date picker At WORK
         setNormalPicker(inflater,container);
-        setsaleswalachart();
+        setCharts();
         return root;
     }
 
@@ -72,10 +75,11 @@ public class Summary extends Fragment {
         });
         onDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int dayi) {
+            public void onDateSet(DatePicker datePicker, int yeari, int month, int dayi) {
+
                 froday=String.valueOf(dayi);
                 frmonth=String.valueOf(month+1);
-                fryear=String.valueOf(year);
+                fryear=String.valueOf(yeari);
                 if(froday.length()==1){
                     froday="0"+froday;
                 }
@@ -83,7 +87,7 @@ public class Summary extends Fragment {
                     frmonth="0"+frmonth;
                 }
                 fr.setText(froday+"/"+frmonth+"/"+fryear);
-                setsaleswalachart();
+                setCharts();
 
             }
         };
@@ -104,10 +108,10 @@ public class Summary extends Fragment {
         });
         onDateSetListener1 = new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int dayi) {
+            public void onDateSet(DatePicker datePicker, int yeari, int month, int dayi) {
                 today=String.valueOf(dayi);
                 tomonth=String.valueOf(month+1);
-                toyear=String.valueOf(year);
+                toyear=String.valueOf(yeari);
                 if(today.length()==1){
                     today="0"+today;
                 }
@@ -115,7 +119,7 @@ public class Summary extends Fragment {
                     tomonth="0"+tomonth;
                 }
                 to.setText(today+"/"+tomonth+"/"+toyear);
-                setsaleswalachart();
+                setCharts();
 
             }
         };
@@ -143,53 +147,89 @@ public class Summary extends Fragment {
         fr.setText(froday+"/"+frmonth+"/"+fryear);
         to=root.findViewById(R.id.textView9);
         to.setText(today+"/"+tomonth+"/"+toyear);
+        totalsalequant=root.findViewById(R.id.tvh);
+        totalpurchasequant=root.findViewById(R.id.textVie);
+        totalamntsale=root.findViewById(R.id.textView7);
+        totalamntpurchase=root.findViewById(R.id.textView24);
         // populating the editTexts and button and firestore
 
 
     }
 
 
-
+private void setCharts(){
+    NoOfEmp.clear();
+    NoOfEmp1.clear();
+    year.clear();
+    tqsale=0;
+    tasale=0;
+    tqpurchase=0;
+    tapurchase=0;
+    setsaleswalachart();
+    setpurchasewalachart();
+}
    private void setsaleswalachart()
    {   switch (k) {
        case 0:
-       read("TABLE1", k);
+       read("TABLE1", k,"true",1);
        year.add("Bhoosa");
        break;
        case 1:
-       read("Arhar", k);
+       read("Arhar", k,"true",1);
        year.add("Arhar");
        break;
        case 2:
-       read("Masoor", k);
+       read("Masoor", k,"true",1);
        year.add("Masoor");
        break;
        case 3:
-       read("Kutti", k);
+       read("Kutti", k,"true",1);
        year.add("Kutti");
        break;
        case 4:
-       read("Chokar", k);
+       read("Chokar", k,"true",1);
        year.add("Chokar");
        break;
        case 5:
-       read("Alsi Khari", k);
+       read("Alsi Khari", k,"true",1);
        year.add("Alsi Khari");
        break;
        case 6:
-       read("Sarso Khali", k);
+       read("Sarso Khali", k,"true",1);
        year.add("Sarso Khali");
-
-       //now will have to set the graph
-
        break;
    }
    }
+    private void setpurchasewalachart()
+    {   switch (k) {
+        case 0:
+            read("TABLE1", m,"false",0);
+            break;
+        case 1:
+            read("Arhar", m,"false",0);
+            break;
+        case 2:
+            read("Masoor", m,"false",0);
+            break;
+        case 3:
+            read("Kutti", m,"false",0);
+            break;
+        case 4:
+            read("Chokar", m,"false",0);
+            break;
+        case 5:
+            read("Alsi Khari", m,"false",0);
+            break;
+        case 6:
+            read("Sarso Khali", m,"false",0);
+            break;
+    }
+    }
 
 
 
-    public void read(String Type, final int i){
-        final float[] data = {0};
+    public void read(final String Type, final int i, final String typi, final int func){
+        final float[] data = {0,0};
         DocumentReference docRef =db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("SalesPurchase").document(Type);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -204,13 +244,16 @@ public class Summary extends Fragment {
                         for (int i=0;i<map.size();i++){
                             long datetocheck = Long.parseLong(String.valueOf(map.get(i).get("Date")));
                             String type=String.valueOf(map.get(i).get("Type"));
-                            if((datetocheck>=frdate&&datetocheck<=todate)&&(type.equals("true"))){
+                            if((datetocheck>=frdate&&datetocheck<=todate)&&(type.equals(typi))){
                                 data[0] +=Float.parseFloat(String.valueOf(map.get(i).get("Quantity")));
+                                data[1] +=Float.parseFloat(String.valueOf(map.get(i).get("Price")));
                                 Log.d("yesitis", String.valueOf(data[0]));
 
                             }
                         }
-                     kushagra(data[0],i);
+                        if(func==1)
+                        { kushagra(data[0],data[1],i);}
+                        else if (func==0){kushagra1(data[0],data[1],i);}
 
                     } else {
                         Log.d("", "No such document");
@@ -224,11 +267,13 @@ public class Summary extends Fragment {
     }
 
 
-    private void  kushagra(float quant,int i)
+    private void  kushagra(float quant,float price,int i)
     {   Log.d("yesitis2222", String.valueOf(quant)+i);
       //  float a=(float) quant;
        // test.add(i,a);
         NoOfEmp.add(new BarEntry(quant, i));
+        tqsale+=quant;
+        tasale+=quant*price;
         k++;
         if(k<=6)
         { setsaleswalachart();}
@@ -253,7 +298,45 @@ public class Summary extends Fragment {
                 public void onNothingSelected() {
 
                 }
-            });}
+            });
+            totalamntsale.setText(String.valueOf(tasale)+" Rs.");
+            totalsalequant.setText(String.valueOf(tqsale)+" sacks");
+            k=0;
+        }
+    }
+    private void  kushagra1(float quant,float price,int i)
+    {   Log.d("yesitis2222", String.valueOf(quant)+i);
+        NoOfEmp1.add(new BarEntry(quant, i));
+        tqpurchase+=quant;
+        tapurchase+=quant*price;
+        m++;
+        if(m<=6)
+        { setpurchasewalachart();}
+        else if (m==7){BarChart chart = root.findViewById(R.id.barchart);
+            BarDataSet bardataset = new BarDataSet(NoOfEmp1, "Item Wise Sales");
+            chart.animateY(2000);
+            BarData data = new BarData(year, bardataset);
+            bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
+            chart.setData(data);
+            chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+                @Override
+                public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
+                    if (e == null)
+                        return;
+
+                    Toast.makeText(getActivity(),
+                            year.get(e.getXIndex()) + " = " + e.getVal() , Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onNothingSelected() {
+
+                }
+            });
+            totalamntpurchase.setText(String.valueOf(tapurchase)+" Rs.");
+            totalpurchasequant.setText(String.valueOf(tqpurchase)+" sacks");
+            m=0;
+        }
     }
 
 
