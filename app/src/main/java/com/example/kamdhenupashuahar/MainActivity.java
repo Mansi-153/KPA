@@ -14,7 +14,6 @@ import com.example.kamdhenupashuahar.Fragments.Summary;
 import com.example.kamdhenupashuahar.Fragments.ViewRecord;
 import com.example.kamdhenupashuahar.Fragments.ViewStock;
 import com.example.kamdhenupashuahar.Fragments.home;
-import com.example.kamdhenupashuahar.Fragments.purchasedetail;
 import com.example.kamdhenupashuahar.Fragments.udhaar;
 import com.example.kamdhenupashuahar.Fragments.updatepricelist;
 import com.google.android.material.navigation.NavigationView;
@@ -114,13 +113,7 @@ public class MainActivity extends AppCompatActivity  {
                         ft.replace(R.id.fragment_place, frag);
                         ft.commit();
                         break;
-                    case R.id.purchasedetail:
-                        frag = new purchasedetail();
-                        fm = getFragmentManager();
-                        ft = fm.beginTransaction();
-                        ft.replace(R.id.fragment_place, frag);
-                        ft.commit();
-                        break;
+
                     case R.id.checkUdhaar:
                         frag = new ViewRecord();
                         fm = getFragmentManager();

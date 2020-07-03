@@ -40,12 +40,7 @@
 
     </group>
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/purchasedetail"
-            android:title="PURCHASE DETAILS" />
 
-    </group>
 
     <!--Search view widget as item in menu-->
 
