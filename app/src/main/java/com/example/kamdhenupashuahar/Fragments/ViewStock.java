@@ -114,7 +114,6 @@ public class ViewStock extends Fragment {
                         docRef.update("Kutti", Double.parseDouble(String.valueOf(edit5.getText())));
                         docRef.update("Alsi Khari", Double.parseDouble(String.valueOf(edit6.getText())));
                         docRef.update("Sarso Khali", Double.parseDouble(String.valueOf(edit7.getText())));
-                        Toast.makeText(getActivity(), "Your Stock Updated", Toast.LENGTH_SHORT).show();
                         Double worth = a1*sessionActivity.getBPrice()+a2*sessionActivity.getCPrice()+a3*sessionActivity.getAPrice()+a4*sessionActivity.getMPrice()+a5*sessionActivity.getKPrice()+a6*sessionActivity.getAkPrice()+a7*sessionActivity.getSPrice();
                         stock.setText(Double.toString(worth));
 

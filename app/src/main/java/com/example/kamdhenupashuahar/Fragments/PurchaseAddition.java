@@ -100,27 +100,35 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
         //take the type,price,quantity
         quantity=qty.getText().toString();
         price=pr.getText().toString();
-        switch (type)
-        {
-            case "Bhoosa": Add(quantity,price,"TABLE1");
-            break;
-            case "Chokar": Add(quantity,price,"Chokar");
+        if(quantity.length()==0 || price.length()==0){
+            Toast.makeText(getActivity(), "Field must not be empty", Toast.LENGTH_SHORT).show();
+        }else{
+        switch (type) {
+            case "Bhoosa":
+                Add(quantity, price, "TABLE1");
                 break;
-            case "Arhar": Add(quantity,price,"Arhar");
+            case "Chokar":
+                Add(quantity, price, "Chokar");
                 break;
-            case "Masoor": Add(quantity,price,"Masoor");
+            case "Arhar":
+                Add(quantity, price, "Arhar");
                 break;
-            case "Kutti": Add(quantity,price,"Kutti");
+            case "Masoor":
+                Add(quantity, price, "Masoor");
                 break;
-            case "Sarso Khali": Add(quantity,price,"Sarso Khali");
+            case "Kutti":
+                Add(quantity, price, "Kutti");
                 break;
-            case "Alsi Khari": Add(quantity,price,"Alsi Khari");
+            case "Sarso Khali":
+                Add(quantity, price, "Sarso Khali");
                 break;
-
+            case "Alsi Khari":
+                Add(quantity, price, "Alsi Khari");
+                break;
+        }
         }
 
         //end mai intent karo doosre fragment par with an update successful toast
-        Toast.makeText(getActivity(),"Added Successfully In Records !!",Toast.LENGTH_SHORT).show();
         FragmentManager fm;
         FragmentTransaction ft;
         Fragment frag;
@@ -167,6 +175,7 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
                     } else {
                         Log.d("", "No such document");
                     }
+                    Toast.makeText(getActivity(),"Added Successfully In Records !!",Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d("", "get failed with ", task.getException());
                 }
