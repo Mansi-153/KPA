@@ -117,7 +117,6 @@ View root;
             @Override
             public void onClick(View view) {
                 add(String.valueOf(name1.getText()).toLowerCase(Locale.getDefault()));
-                Toast.makeText(getActivity(),"Data Succesfully Added", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -225,13 +224,14 @@ View root;
                     } else {
                         docRef.set(user2);
                     }
+                    Toast.makeText(getActivity(), "Data Succesfully Added", Toast.LENGTH_SHORT).show();
                     Fragment frag = new udhaar();
                     FragmentManager fm = getFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
                     ft.replace(R.id.fragment_place, frag);
                     ft.commit();
                 } else {
-                    Log.d("", "get failed with ", task.getException());
+                    Toast.makeText(getActivity(), "get failed with "+task.getException(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

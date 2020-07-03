@@ -44,6 +44,7 @@ public class AddingSalesRecord extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root= inflater.inflate(R.layout.fragment_adding_sales_record, container, false);
+
         Initialization();
         //Date picker At WORK
         setNormalPicker(inflater,container);
@@ -60,7 +61,7 @@ public class AddingSalesRecord extends Fragment {
    private void work()
    {
      if(!(Bqty.getText().toString().isEmpty()&&Bprice.getText().toString().isEmpty()))
-     { String type="Bhoosa";
+     { String type="TABLE1";
        Add(Bqty.getText().toString(),Bprice.getText().toString(),type);
      }
 
@@ -118,9 +119,12 @@ public class AddingSalesRecord extends Fragment {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        Log.d("mansiiiiiiiiiiiiiiiiiii", "DocumentSnapshot data: " + document.getData());
                         //  Double stock;
-                        stock[0] =document.getDouble(Type);
+                        if(Type.equals("TABLE1")){
+                            stock[0] =document.getDouble(Type);
+                        }else{
+                            stock[0] =document.getDouble(Type);
+                        }
                         stock[0]=stock[0]-Double.parseDouble(str);
                         db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock")
                                 .update(Type, stock[0]);

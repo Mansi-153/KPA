@@ -310,10 +310,9 @@
                         android:id="@+id/totalVal"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="150dp"
                         android:text="89"
                         app:layout_constraintBottom_toBottomOf="@+id/textView26"
-                        app:layout_constraintStart_toEndOf="@+id/textView26"
+                        app:layout_constraintEnd_toEndOf="@+id/sarsoP"
                         app:layout_constraintTop_toTopOf="@+id/textView26" />
 
                     <TextView
@@ -334,7 +333,7 @@
                         android:layout_height="wrap_content"
                         android:text="45"
                         app:layout_constraintBottom_toBottomOf="@+id/textView27"
-                        app:layout_constraintStart_toStartOf="@+id/totalVal"
+                        app:layout_constraintEnd_toEndOf="@+id/totalVal"
                         app:layout_constraintTop_toTopOf="@+id/textView27" />
 
                     <Button

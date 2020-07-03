@@ -37,8 +37,7 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
     private Spinner spinner;
     ImageView fr;
     TextView date,qty,pr;
-    String today,toyear,tomonth,quantity,price;
-    String type="Bhoosa";
+    String today,toyear,tomonth,type,quantity,price;
     Button add;
     private DatePickerDialog.OnDateSetListener onDateSetListener;
 
@@ -119,6 +118,7 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
                 break;
 
         }
+
         //end mai intent karo doosre fragment par with an update successful toast
         Toast.makeText(getActivity(),"Added Successfully In Records !!",Toast.LENGTH_SHORT).show();
         FragmentManager fm;
@@ -129,7 +129,6 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
         ft = fm.beginTransaction();
         ft.replace(R.id.fragment_place, frag);
         ft.commit();
-
     }
 
     //function for adding according to type
@@ -145,7 +144,8 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
         db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("SalesPurchase").document(Type).update("ArraySales", FieldValue.arrayUnion(user));
   //now Add data to update Stock
 //for this firstly read data from the stock then add the quantity from it and update it with write command.
-        final double[] stock = {0};
+        final Double[] stock = new Double[1];
+        stock[0]= Double.valueOf(0);
         final String str=qy;
         DocumentReference docRef =db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock");
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -156,16 +156,18 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
                     if (document.exists()) {
                         Log.d("mansiiiiiiiiiiiiiiiiiii", "DocumentSnapshot data: " + document.getData());
                       //  Double stock;
-                        stock[0] =document.getDouble(Type);
+                        if(Type.equals("TABLE1")){
+                            stock[0] =document.getDouble("Bhoosa");
+                        }else{
+                            stock[0] =document.getDouble(Type);
+                        }
                        stock[0]=stock[0]+Double.parseDouble(str);
                        db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock")
                                .update(Type, stock[0]);
                     } else {
                         Log.d("", "No such document");
                     }
-                   //
                 } else {
-                  //  Toast.makeText(getActivity(),"get failed with!"+task.getException(),Toast.LENGTH_SHORT).show();
                     Log.d("", "get failed with ", task.getException());
                 }
             }
@@ -181,7 +183,6 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
             @Override
             public void onClick(View v) {
                 String pichlafrom1=date.getText().toString();
-
                 Integer yy2=Integer.parseInt(pichlafrom1.substring(6,10));
                 Integer mm2=Integer.parseInt(pichlafrom1.substring(3,5));
                 Integer dd2=Integer.parseInt(pichlafrom1.substring(0,2));

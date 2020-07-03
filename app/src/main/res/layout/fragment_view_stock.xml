@@ -199,10 +199,9 @@
         android:layout_marginTop="50dp"
         android:text="Stock Worth"
         android:textColor="#FF5722"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/stockW"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView28"
         app:layout_constraintTop_toBottomOf="@+id/editSarso" />
 
     <ImageView
@@ -218,14 +217,13 @@
         android:id="@+id/stockW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
         android:padding="5dp"
         android:text="5,24,569"
         android:textColor="#F44336"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/txt"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView29"
         app:layout_constraintTop_toTopOf="@+id/txt" />
 
     <LinearLayout

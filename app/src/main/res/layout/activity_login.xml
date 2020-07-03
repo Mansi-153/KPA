@@ -17,7 +17,7 @@
         android:hint="USERNAME"
         android:inputType="textPersonName"
         android:textColor="@color/hintcolor"
-        android:textColorHint="@color/hintcolor"
+        android:textColorHint="#F6F9FB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.253"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
         android:hint="PASSWORD"
         android:inputType="textPassword"
         android:textColor="@color/hintcolor"
-        android:textColorHint="@color/hintcolor"
+        android:textColorHint="#FBFBFB"
         app:layout_constraintStart_toStartOf="@+id/editText"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
 
@@ -44,7 +44,7 @@
         android:layout_marginTop="60dp"
         android:background="@drawable/shape"
         android:text="Login"
-        android:textColor="#000000"
+        android:textColor="#F6F2F2"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/editText2"
         app:layout_constraintHorizontal_bias="0.0"

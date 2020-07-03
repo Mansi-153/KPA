@@ -126,6 +126,7 @@ public class ViewRecord extends Fragment {
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                Log.d("mansiiiiiiiiiii","jjjjjjjjjjjjjj");
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     long b = 0, c = 0, a = 0, m = 0, k = 0, al = 0, s = 0;
@@ -136,7 +137,6 @@ public class ViewRecord extends Fragment {
                         final String[][] strings = new String[map.size()][10];
                         for (int i = 0; i < map.size(); i++) {
                             strings[i][0]= String.valueOf(map.get(i).get("Date"));
-                            Log.d("mansiiiiiiiiiii",map.get(i).get("ItemInfo").toString());
                             ArrayList<Long> qty = (ArrayList<Long>) map.get(i).get("ItemInfo");
                             b += qty.get(1);
                             c += qty.get(3);

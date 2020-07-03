@@ -99,17 +99,34 @@ public class ViewStock extends Fragment {
     }
 
     public void btn(){
-        DocumentReference docRef =db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock");
-        docRef.update("Bhoosa", Double.parseDouble(String.valueOf(edit.getText())));
-        docRef.update("Chokar", Double.parseDouble(String.valueOf(edit2.getText())));
-        docRef.update("Arhar", Double.parseDouble(String.valueOf(edit3.getText())));
-        docRef.update("Masoor", Double.parseDouble(String.valueOf(edit4.getText())));
-        docRef.update("Kutti", Double.parseDouble(String.valueOf(edit5.getText())));
-        docRef.update("Alsi Khari", Double.parseDouble(String.valueOf(edit6.getText())));
-        docRef.update("Sarso Khali", Double.parseDouble(String.valueOf(edit7.getText())));
-        Toast.makeText(getActivity(), "Your Stock Updated", Toast.LENGTH_SHORT).show();
-        Double worth = a1*sessionActivity.getBPrice()+a2*sessionActivity.getCPrice()+a3*sessionActivity.getAPrice()+a4*sessionActivity.getMPrice()+a5*sessionActivity.getKPrice()+a6*sessionActivity.getAkPrice()+a7*sessionActivity.getSPrice();
-        stock.setText(Double.toString(worth));
+        final DocumentReference docRef =db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        if(edit.getText()==null || edit.getText()==null || edit.getText()==null || edit.getText()==null || edit5.getText()==null || edit6.getText()==null || edit7.getText()==null)
+                        docRef.update("Bhoosa", Double.parseDouble(String.valueOf(edit.getText())));
+                        docRef.update("Chokar", Double.parseDouble(String.valueOf(edit2.getText())));
+                        docRef.update("Arhar", Double.parseDouble(String.valueOf(edit3.getText())));
+                        docRef.update("Masoor", Double.parseDouble(String.valueOf(edit4.getText())));
+                        docRef.update("Kutti", Double.parseDouble(String.valueOf(edit5.getText())));
+                        docRef.update("Alsi Khari", Double.parseDouble(String.valueOf(edit6.getText())));
+                        docRef.update("Sarso Khali", Double.parseDouble(String.valueOf(edit7.getText())));
+                        Toast.makeText(getActivity(), "Your Stock Updated", Toast.LENGTH_SHORT).show();
+                        Double worth = a1*sessionActivity.getBPrice()+a2*sessionActivity.getCPrice()+a3*sessionActivity.getAPrice()+a4*sessionActivity.getMPrice()+a5*sessionActivity.getKPrice()+a6*sessionActivity.getAkPrice()+a7*sessionActivity.getSPrice();
+                        stock.setText(Double.toString(worth));
+
+                    } else {
+                        Toast.makeText(getActivity(), "No Such Field Present", Toast.LENGTH_SHORT).show();
+                    }Toast.makeText(getActivity(), "Data Succesfully Added", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(getActivity(), "get failed with "+task.getException(), Toast.LENGTH_SHORT).show();
+                    }
+            }
+        });
 
     }
 
