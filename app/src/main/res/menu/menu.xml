@@ -7,28 +7,36 @@
 
     <group android:checkableBehavior="single">
         <item android:id="@+id/home"
-            android:title="HOME"/>
+            android:title="HOME"
+            android:icon="@drawable/ic_dashboard_black_24dp"/>
         <item
             android:id="@+id/summary"
-            android:title="SUMMARY" />
+            android:title="SUMMARY"
+            android:icon="@drawable/ic_multiline_chart_black_24dp"/>
         <item
             android:id="@+id/updatepricelist"
-            android:title="UPDATE PRICELIST" />
+            android:title="UPDATE PRICELIST"
+            android:icon="@drawable/ic_attach_money_black_24dp"/>
         <item
             android:id="@+id/addsalesrecord"
-            android:title="UPDATE SALES RECORD" />
+            android:title="UPDATE SALES RECORD"
+            android:icon="@drawable/ic_shopping_cart_black_24dp"/>
         <item
             android:id="@+id/purchaseaddition"
-            android:title="ADD PURCHASE" />
+            android:title="ADD PURCHASE"
+            android:icon="@drawable/ic_add_shopping_cart_black_24dp"/>
         <item
             android:id="@+id/udhaar"
-            android:title="UDHAAR" />
+            android:title="UDHAAR"
+            android:icon="@drawable/ic_person_add_black_24dp"/>
         <item
             android:id="@+id/checkUdhaar"
-            android:title="CHECK UDHAAR" />
+            android:title="CHECK UDHAAR"
+            android:icon="@drawable/ic_person_black_24dp"/>
         <item
             android:id="@+id/viewStock"
-            android:title="VIEW STOCK" />
+            android:title="VIEW STOCK"
+            android:icon="@drawable/ic_insert_chart_black_24dp"/>
 
     </group>
 

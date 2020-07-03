@@ -28,11 +28,10 @@ public class DetailsOfUdhaar extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root  = inflater.inflate(R.layout.fragment_details_of_udhaar, container, false);
+        BundleClass savingCache = BundleClass.getInstance();
         nameC = root.findViewById(R.id.nameC);
-        Bundle bundle = getArguments();
-        BundleClass obj =(BundleClass) bundle.getSerializable("obj");
-        DATA_TO_SHOW = obj.getRes();
-        nameC.setText(obj.getName());
+        DATA_TO_SHOW = savingCache.getRes();
+        nameC.setText(savingCache.getName());
         // Inflate the layout for this fragment
         TableView<String[]> tableView = (TableView<String[]>) root.findViewById(R.id.tableView);
         TableColumnWeightModel columnModel = new TableColumnWeightModel(10);

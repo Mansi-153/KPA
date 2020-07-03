@@ -5,11 +5,16 @@ import android.content.Context;
 import java.io.Serializable;
 
 public class BundleClass implements Serializable {
-    Context context;
+    private static BundleClass mInstance;
     String[][] strings;
     String string;
-    public BundleClass(Context context){
-        this.context = context;
+    public static synchronized BundleClass getInstance(){
+        if(mInstance==null){
+            mInstance= new BundleClass();
+        }
+        return mInstance;
+    }
+    private BundleClass(){
     }
     public void setRes(String[][] strings){
         this.strings= strings;

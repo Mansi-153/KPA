@@ -25,7 +25,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -156,9 +155,9 @@ public class ViewRecord extends Fragment {
                             strings[i][8] = String.valueOf(map.get(i).get("TotalAmount"));
                             strings[i][9] = String.valueOf(map.get(i).get("TotalPaid"));
                         }
-                        final BundleClass bundleClass = new BundleClass(getActivity());
-                        bundleClass.setRes(strings);
-                        bundleClass.setName(s1);
+                        BundleClass savingCache = BundleClass.getInstance();
+                        savingCache.setRes(strings);
+                        savingCache.setName(s1);
                         bhusa.setText(String.valueOf(b));
                         cho.setText(String.valueOf(c));
                         arhar.setText(String.valueOf(a));
@@ -172,9 +171,6 @@ public class ViewRecord extends Fragment {
                                 Fragment frag = new DetailsOfUdhaar();
                                 FragmentManager fm = getFragmentManager();
                                 FragmentTransaction ft = fm.beginTransaction();
-                                Bundle bundle=new Bundle();
-                                bundle.putSerializable("obj",bundleClass);
-                                frag.setArguments(bundle);
                                 ft.replace(R.id.fragment_place, frag);
                                 ft.commit();
                             }

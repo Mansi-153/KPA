@@ -9,29 +9,16 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.kamdhenupashuahar.Fragments.AddingSalesRecord;
-import com.example.kamdhenupashuahar.Fragments.DetailsOfUdhaar;
 import com.example.kamdhenupashuahar.Fragments.PurchaseAddition;
 import com.example.kamdhenupashuahar.Fragments.Summary;
+import com.example.kamdhenupashuahar.Fragments.ViewRecord;
+import com.example.kamdhenupashuahar.Fragments.ViewStock;
 import com.example.kamdhenupashuahar.Fragments.home;
 import com.example.kamdhenupashuahar.Fragments.purchasedetail;
 import com.example.kamdhenupashuahar.Fragments.udhaar;
 import com.example.kamdhenupashuahar.Fragments.updatepricelist;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.SetOptions;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -125,7 +112,14 @@ public class MainActivity extends AppCompatActivity  {
                         ft.commit();
                         break;
                     case R.id.checkUdhaar:
-                        frag = new DetailsOfUdhaar();
+                        frag = new ViewRecord();
+                        fm = getFragmentManager();
+                        ft = fm.beginTransaction();
+                        ft.replace(R.id.fragment_place, frag);
+                        ft.commit();
+                        break;
+                    case R.id.viewStock:
+                        frag = new ViewStock();
                         fm = getFragmentManager();
                         ft = fm.beginTransaction();
                         ft.replace(R.id.fragment_place, frag);
@@ -154,7 +148,7 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
-    public void add(){
+    /*public void add(){
         Map<String, Object> user = new HashMap<>();
         user.put("Date", "26/06/20");
         user.put("Quantity", 200);
@@ -182,7 +176,7 @@ public class MainActivity extends AppCompatActivity  {
                 }
             }
         });
-    }
+    }*/
 }
 
 //https://firestore.googleapis.com/v1beta1/projects/kamdhenupashuahar-20637/databases/(default)/documents/Database/irytBOPTVitXVRh5vB51
