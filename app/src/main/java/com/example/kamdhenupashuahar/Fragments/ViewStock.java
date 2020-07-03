@@ -13,6 +13,14 @@ import android.widget.Toast;
 
 import com.example.kamdhenupashuahar.R;
 import com.example.kamdhenupashuahar.util.SessionActivity;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -21,19 +29,23 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.annotation.NonNull;
 
-public class ViewStock extends Fragment {
+import java.util.ArrayList;
 
+public class ViewStock extends Fragment {
+   View root;
     FirebaseFirestore db;
     double a1,a2,a3,a4,a5,a6,a7;
     EditText edit,edit2,edit3,edit4,edit5,edit6,edit7;
     TextView stock;
     SessionActivity sessionActivity;
+    public ArrayList NoOfEmp = new ArrayList();
+    public ArrayList year = new ArrayList();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root =  inflater.inflate(R.layout.fragment_view_stock, container, false);
+         root =  inflater.inflate(R.layout.fragment_view_stock, container, false);
        sessionActivity  = new SessionActivity(getActivity());
         db = FirebaseFirestore.getInstance();
 
@@ -73,7 +85,7 @@ public class ViewStock extends Fragment {
                                 btn();
                             }
                         });
-
+                      setchart();
                     } else {
                         Toast.makeText(getActivity(), "No Such Field Present", Toast.LENGTH_SHORT).show();
                     }
@@ -82,6 +94,7 @@ public class ViewStock extends Fragment {
                 }
             }
         });
+
           return root;
     }
 
@@ -98,5 +111,51 @@ public class ViewStock extends Fragment {
         Double worth = a1*sessionActivity.getBPrice()+a2*sessionActivity.getCPrice()+a3*sessionActivity.getAPrice()+a4*sessionActivity.getMPrice()+a5*sessionActivity.getKPrice()+a6*sessionActivity.getAkPrice()+a7*sessionActivity.getSPrice();
         stock.setText(Double.toString(worth));
 
+    }
+
+    private void setchart(){
+        NoOfEmp.clear();
+        year.clear();
+        NoOfEmp.add(new BarEntry((float) Float.parseFloat(edit.getText().toString()), 0));
+        NoOfEmp.add(new BarEntry((float) Float.parseFloat(edit2.getText().toString()), 1));
+        NoOfEmp.add(new BarEntry((float) Float.parseFloat(edit3.getText().toString()), 2));
+        NoOfEmp.add(new BarEntry((float) Float.parseFloat(edit4.getText().toString()), 3));
+        NoOfEmp.add(new BarEntry((float) Float.parseFloat(edit5.getText().toString()), 4));
+        NoOfEmp.add(new BarEntry((float) Float.parseFloat(edit6.getText().toString()), 5));
+        NoOfEmp.add(new BarEntry((float) Float.parseFloat(edit7.getText().toString()), 6));
+
+        year.add("Bhoosa");
+        year.add("Chokar");
+        year.add("Arhar");
+        year.add("Masoor");
+        year.add("Kutti");
+        year.add("Alsi Khari");
+        year.add("Sarso Khali");
+        Log.d("ppooooooooo",NoOfEmp.toString());
+        Log.d("ppjjjjjjjjjjjj",year.toString());
+        PieChart pieChart = root.findViewById(R.id.piechart);
+        PieDataSet dataSet = new PieDataSet(NoOfEmp, "STOCK ITEM-WISE");
+
+        PieData data = new PieData(year, dataSet);
+        pieChart.setData(data);
+        pieChart.setUsePercentValues(true);
+        dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+        pieChart.animateXY(1500, 1500);
+
+        pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
+                if (e == null)
+                    return;
+
+                Toast.makeText(getActivity(),
+                        year.get(e.getXIndex()) + " = " + e.getVal() , Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected() {
+
+            }
+        });
     }
 }

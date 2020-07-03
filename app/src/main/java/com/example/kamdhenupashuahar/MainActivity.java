@@ -27,6 +27,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 
 public class MainActivity extends AppCompatActivity  {
     transient DrawerLayout drawerLayout;
@@ -42,6 +47,11 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         db = FirebaseFirestore.getInstance();
+        try {
+            dte();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         frag = new home();
         fm = getFragmentManager();
         ft = fm.beginTransaction();
@@ -147,7 +157,15 @@ public class MainActivity extends AppCompatActivity  {
 
     }
 
-
+private void dte() throws ParseException {
+    final String sdate = "2012-01-01";
+    final SimpleDateFormat df = new SimpleDateFormat( "yyyy-MM-dd" );
+    final Date date = df.parse( sdate ); // conversion from String
+    final java.util.Calendar cal = GregorianCalendar.getInstance();
+    cal.setTime( date );
+    cal.add( GregorianCalendar.DAY_OF_MONTH, -5 ); // date manipulation
+    Log.d("DATE", "result: " + df.format( cal.getTime() ) ); // conversion to String
+}
     /*public void add(){
         Map<String, Object> user = new HashMap<>();
         user.put("Date", "26/06/20");

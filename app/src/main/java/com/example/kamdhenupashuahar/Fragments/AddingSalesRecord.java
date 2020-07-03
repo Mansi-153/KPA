@@ -94,16 +94,7 @@ public class AddingSalesRecord extends Fragment {
            Add(Kqty.getText().toString(),Kprice.getText().toString(),type);
        }
 
-       //add the intent and toast
-       Toast.makeText(getActivity(),"Added Successfully In Records !!",Toast.LENGTH_SHORT).show();
-       FragmentManager fm;
-       FragmentTransaction ft;
-       Fragment frag;
-       frag = new AddingSalesRecord();
-       fm = getFragmentManager();
-       ft = fm.beginTransaction();
-       ft.replace(R.id.fragment_place, frag);
-       ft.commit();
+
    }
 
     private void Add(String qy, String pri, final String Type)
@@ -136,7 +127,18 @@ public class AddingSalesRecord extends Fragment {
                     } else {
                         Log.d("", "No such document");
                     }
+                    //add the intent and toast
+                    Toast.makeText(getActivity(),"Added Successfully In Records !!",Toast.LENGTH_SHORT).show();
+                    FragmentManager fm;
+                    FragmentTransaction ft;
+                    Fragment frag;
+                    frag = new AddingSalesRecord();
+                    fm = getFragmentManager();
+                    ft = fm.beginTransaction();
+                    ft.replace(R.id.fragment_place, frag);
+                    ft.commit();
                 } else {
+                    Toast.makeText(getActivity(),"get failed with!"+task.getException(),Toast.LENGTH_SHORT).show();
                     Log.d("", "get failed with ", task.getException());
                 }
             }

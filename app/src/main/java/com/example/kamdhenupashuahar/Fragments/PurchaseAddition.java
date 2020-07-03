@@ -37,7 +37,8 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
     private Spinner spinner;
     ImageView fr;
     TextView date,qty,pr;
-    String today,toyear,tomonth,type,quantity,price;
+    String today,toyear,tomonth,quantity,price;
+    String type="Bhoosa";
     Button add;
     private DatePickerDialog.OnDateSetListener onDateSetListener;
 
@@ -118,7 +119,6 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
                 break;
 
         }
-
         //end mai intent karo doosre fragment par with an update successful toast
         Toast.makeText(getActivity(),"Added Successfully In Records !!",Toast.LENGTH_SHORT).show();
         FragmentManager fm;
@@ -129,6 +129,7 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
         ft = fm.beginTransaction();
         ft.replace(R.id.fragment_place, frag);
         ft.commit();
+
     }
 
     //function for adding according to type
@@ -144,7 +145,7 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
         db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("SalesPurchase").document(Type).update("ArraySales", FieldValue.arrayUnion(user));
   //now Add data to update Stock
 //for this firstly read data from the stock then add the quantity from it and update it with write command.
-        final Double[] stock = new Double[1];
+        final double[] stock = {0};
         final String str=qy;
         DocumentReference docRef =db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock");
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -162,7 +163,9 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
                     } else {
                         Log.d("", "No such document");
                     }
+                   //
                 } else {
+                  //  Toast.makeText(getActivity(),"get failed with!"+task.getException(),Toast.LENGTH_SHORT).show();
                     Log.d("", "get failed with ", task.getException());
                 }
             }
