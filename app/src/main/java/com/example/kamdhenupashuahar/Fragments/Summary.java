@@ -194,8 +194,6 @@ public class Summary extends Fragment {
     }
 
 private  void setTrendsChart(String datestart) throws ParseException {
-      //  NoOfEmp2.clear();
-      //  year2.clear();
     final String sdate = datestart;
     final SimpleDateFormat df = new SimpleDateFormat( "yyyy-MM-dd" );
     final Date date = df.parse( sdate ); // conversion from String
@@ -208,7 +206,6 @@ private  void setTrendsChart(String datestart) throws ParseException {
             long datetopass=Long.parseLong(yy2);
             Log.d("DATE", "result: " + df.format( cal.getTime() ) +String.valueOf(datetopass)); // conversion to String
             readtrend(datetopass,t);
-          //  year2.add("D10");
             break;
         case 1:
             cal.add( GregorianCalendar.DAY_OF_MONTH, -8 ); // date manipulation
@@ -216,7 +213,6 @@ private  void setTrendsChart(String datestart) throws ParseException {
             long datetopass1=Long.parseLong(yy3);
             Log.d("DATE", "result: " + df.format( cal.getTime() ) ); // conversion to String
             readtrend(datetopass1,t);
-         //   year2.add("D9");
             break;
         case 2:
             cal.add( GregorianCalendar.DAY_OF_MONTH, -7 ); // date manipulation
@@ -224,7 +220,6 @@ private  void setTrendsChart(String datestart) throws ParseException {
             long datetopass2=Long.parseLong(yy4);
             Log.d("DATE", "result: " + df.format( cal.getTime() ) ); // conversion to String
             readtrend(datetopass2,t);
-         //   year2.add("D8");
             break;
         case 3:
             cal.add( GregorianCalendar.DAY_OF_MONTH, -6 ); // date manipulation
@@ -232,7 +227,6 @@ private  void setTrendsChart(String datestart) throws ParseException {
             long datetopass3=Long.parseLong(yy5);
             Log.d("DATE", "result: " + df.format( cal.getTime() ) ); // conversion to String
             readtrend(datetopass3,t);
-          //  year2.add("D7");
             break;
         case 4:
             cal.add( GregorianCalendar.DAY_OF_MONTH, -5 ); // date manipulation
@@ -240,7 +234,6 @@ private  void setTrendsChart(String datestart) throws ParseException {
             long datetopass4=Long.parseLong(yy6);
             Log.d("DATE", "result: " + df.format( cal.getTime() ) ); // conversion to String
             readtrend(datetopass4,t);
-         //   year2.add("D6");
             break;
         case 5:
             cal.add( GregorianCalendar.DAY_OF_MONTH, -4 ); // date manipulation
@@ -248,7 +241,6 @@ private  void setTrendsChart(String datestart) throws ParseException {
             long datetopass5=Long.parseLong(yy7);
             Log.d("DATE", "result: " + df.format( cal.getTime() ) ); // conversion to String
             readtrend(datetopass5,t);
-          //  year2.add("D5");
             break;
         case 6:
             cal.add( GregorianCalendar.DAY_OF_MONTH, -3 ); // date manipulation
@@ -256,7 +248,6 @@ private  void setTrendsChart(String datestart) throws ParseException {
             long datetopass6=Long.parseLong(yy8);
             Log.d("DATE", "result: " + df.format( cal.getTime() ) ); // conversion to String
             readtrend(datetopass6,t);
-          //  year2.add("D4");
             break;
         case 7:
             cal.add( GregorianCalendar.DAY_OF_MONTH, -2 ); // date manipulation
@@ -264,7 +255,6 @@ private  void setTrendsChart(String datestart) throws ParseException {
             long datetopass7=Long.parseLong(yy9);
             Log.d("DATE", "result: " + df.format( cal.getTime() ) ); // conversion to String
             readtrend(datetopass7,t);
-          //  year2.add("D3");
             break;
         case 8:
             cal.add( GregorianCalendar.DAY_OF_MONTH, -1 ); // date manipulation
@@ -272,17 +262,10 @@ private  void setTrendsChart(String datestart) throws ParseException {
             long datetopass8=Long.parseLong(yy10);
             Log.d("DATE", "result: " + df.format( cal.getTime() ) ); // conversion to String
             readtrend(datetopass8,t);
-          //  year2.add("D2");
             break;
         case 9:
-           /* cal.add( GregorianCalendar.DAY_OF_MONTH, 0 ); // date manipulation
-            String yy11=df.format( cal.getTime() ).substring(0,4)+df.format( cal.getTime() ).substring(5,7)+df.format( cal.getTime() ).substring(8,10);
-            long datetopass9=Long.parseLong(yy11);
-
-            */
             Log.d("DATElllllll", "result: " + String.valueOf(ky)); // conversion to String
             readtrend(ky,t);
-         //   year2.add("D1");
             break;
     }
 }
@@ -301,36 +284,36 @@ private void setCharts(){
    {   switch (k) {
        case 0:
        read("TABLE1", k,"true",1);
-       year.add("Bhoosa");
+       year.add("Bhu");
        break;
        case 1:
        read("Arhar", k,"true",1);
-       year.add("Arhar");
+       year.add("Ahr");
        break;
        case 2:
        read("Masoor", k,"true",1);
-       year.add("Masoor");
+       year.add("Msr");
        break;
        case 3:
        read("Kutti", k,"true",1);
-       year.add("Kutti");
+       year.add("Kti");
        break;
        case 4:
        read("Chokar", k,"true",1);
-       year.add("Chokar");
+       year.add("Ckr");
        break;
        case 5:
        read("Alsi Khari", k,"true",1);
-       year.add("Alsi Khari");
+       year.add("A-K");
        break;
        case 6:
        read("Sarso Khali", k,"true",1);
-       year.add("Sarso Khali");
+       year.add("S-K");
        break;
    }
    }
     private void setpurchasewalachart()
-    {   switch (k) {
+    {  switch (k) {
         case 0:
             read("TABLE1", m,"false",0);
             break;
@@ -373,7 +356,7 @@ private void setCharts(){
                             String type=String.valueOf(map.get(i).get("Type"));
                             if((datetocheck>=frdate&&datetocheck<=todate)&&(type.equals(typi))){
                                 data[0] +=Float.parseFloat(String.valueOf(map.get(i).get("Quantity")));
-                                data[1] +=Float.parseFloat(String.valueOf(map.get(i).get("Price")));
+                                data[1]+=Float.parseFloat(String.valueOf(map.get(i).get("Total")));
                                 Log.d("yesitis", String.valueOf(data[0]));
 
                             }
@@ -393,7 +376,6 @@ private void setCharts(){
 
     }
 
-
     public void readtrend(final long currentdate, final int i) throws ParseException {
         final float[] amnt = {0};
         Log.d("yesitis888","kk");
@@ -401,8 +383,8 @@ private void setCharts(){
         //yahan se loop lagega for categories wise
         for (e=0;e<7;e++) {
             final float[] data1 = {0, 0};
+            amnt[0]=0;
             Log.d("tessssss",temparray.get(e).toString());
-
             DocumentReference docRef = db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("SalesPurchase").document(temparray.get(e).toString());
             final int finalE = e;
             docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -412,7 +394,6 @@ private void setCharts(){
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
                             Log.d("yesitis4444444", "cahala hai");
-
                             ArrayList<Map<String, Object>> map = new ArrayList<>();
                             map = (ArrayList<Map<String, Object>>) document.get("ArraySales");
                             for (int i = 0; i < map.size(); i++) {
@@ -424,19 +405,16 @@ private void setCharts(){
                                 if (datetocheck==currentdate && type.equals("true")) {
                                     Log.d("yesitis4444444", "cahala hai444");
 
-                                    data1[0] += Float.parseFloat(String.valueOf(map.get(i).get("Quantity")));
-                                    data1[1] += Float.parseFloat(String.valueOf(map.get(i).get("Price")));
-                                    amnt[0] += data1[0] * data1[1];
+                                    data1[0] = Float.parseFloat(String.valueOf(map.get(i).get("Quantity")));
+                                    data1[1] = Float.parseFloat(String.valueOf(map.get(i).get("Total")));
+                                    amnt[0]+= data1[1];
                                     Log.d("yesitis4444444", String.valueOf(data1[0])+"---"+String.valueOf(map.get(i).get("Quantity")));
-
                                 }
                                 Log.d("yesitiskkkk", String.valueOf(amnt[0]));
-
                             }
                             Log.d("yesitiskkkk11", String.valueOf(amnt[0]));
-                            if(finalE==6){      Log.d("yesitiskkkk22", String.valueOf(amnt[0]));
-
-
+                            if(finalE==6){
+                                Log.d("yesitiskkkk22", String.valueOf(amnt[0]));
                                     final Handler handler = new Handler();
                                     handler.postDelayed(new Runnable() {
                                         @Override
@@ -447,11 +425,9 @@ private void setCharts(){
                                             } catch (ParseException ex) {
                                                 ex.printStackTrace();
                                             }
-
                                         }
                                     }, 300);
                                   //  kushagra2(amnt[0],i);
-
                             }
                         } else {
                             Log.d("", "No such document");
@@ -461,27 +437,24 @@ private void setCharts(){
                     }
                 }
             });
-
         }
         Log.d("yesitis666", String.valueOf(e));
-
-
     }
 
 
 
-    private void  kushagra(float quant,float price,int i)
-    {   Log.d("yesitis2222", String.valueOf(quant)+i);
-      //  float a=(float) quant;
-       // test.add(i,a);
+    private void  kushagra(float quant,float tot,int i){   Log.d("yesitis2222", String.valueOf(quant)+i);
+
         NoOfEmp.add(new BarEntry(quant, i));
         tqsale+=quant;
-        tasale+=quant*price;
-        k++;
-        if(k<=6)
-        { setsaleswalachart();}
-        else if (k==7){BarChart chart = root.findViewById(R.id.barchartk);
+        tasale+=tot;
 
+        if(k<6)
+        {  k++;
+            setsaleswalachart();
+           }
+        else if (k==6){
+            BarChart chart = root.findViewById(R.id.barchartk);
             BarDataSet bardataset = new BarDataSet(NoOfEmp, "Item Wise Sales");
             chart.animateY(2000);
             BarData data = new BarData(year, bardataset);
@@ -506,16 +479,17 @@ private void setCharts(){
             totalsalequant.setText(String.valueOf(tqsale)+" sacks");
             k=0;
         }
+
     }
-    private void  kushagra1(float quant,float price,int i)
-    {   Log.d("yesitis2222", String.valueOf(quant)+i);
+    private void  kushagra1(float quant,float tot,int i)  {   Log.d("yesitis2222", String.valueOf(quant)+i);
         NoOfEmp1.add(new BarEntry(quant, i));
         tqpurchase+=quant;
-        tapurchase+=quant*price;
-        m++;
-        if(m<=6)
-        { setpurchasewalachart();}
-        else if (m==7){BarChart chart = root.findViewById(R.id.barchart);
+        tapurchase+=tot;
+
+        if(m<6)
+        { m++;
+            setpurchasewalachart();}
+        else if (m==6){BarChart chart = root.findViewById(R.id.barchart);
             BarDataSet bardataset = new BarDataSet(NoOfEmp1, "Item Wise Sales");
             chart.animateY(2000);
             BarData data = new BarData(year, bardataset);
@@ -541,8 +515,6 @@ private void setCharts(){
             m=0;
         }
     }
-
-
     private void  kushagra2(float amountofday,int i) throws ParseException {
         Log.d("yesitis777", String.valueOf(amountofday)+"--"+String.valueOf(t));
         NoOfEmp2.add(new BarEntry(amountofday, i));
