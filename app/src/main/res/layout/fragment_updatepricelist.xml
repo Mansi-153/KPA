@@ -9,6 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
@@ -16,9 +17,10 @@
             android:layout_marginLeft="2dp"
             android:layout_marginTop="30dp"
             android:layout_marginRight="2dp"
+            android:fontFamily="sans-serif-medium"
             android:text="UPDATE PRICELIST"
-            android:textColor="#C9051364"
-            android:textSize="30sp"
+            android:textColor="#4CAF50"
+            android:textSize="28sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,11 +30,11 @@
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="60dp"
             android:text="BHOOSA :"
             android:textColor="#0288D1"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -42,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
-            android:text="/quintil"
+            android:text="/sack"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView13"
             app:layout_constraintEnd_toEndOf="parent"
@@ -66,13 +68,12 @@
             android:id="@+id/textView131"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
             android:layout_marginTop="35dp"
             android:text="CHOKAR :"
             android:textColor="#0288D1"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView13"
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
         <TextView
@@ -80,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
-            android:text="/quintil"
+            android:text="/sack"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView131"
             app:layout_constraintEnd_toEndOf="parent"
@@ -104,13 +105,12 @@
             android:id="@+id/textView1312"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
             android:layout_marginTop="35dp"
             android:text="ARHAR :"
             android:textColor="#0288D1"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView131"
             app:layout_constraintTop_toBottomOf="@+id/textView131" />
 
         <TextView
@@ -118,7 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
-            android:text="/quintil"
+            android:text="/sack"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView1312"
             app:layout_constraintEnd_toEndOf="parent"
@@ -142,13 +142,12 @@
             android:id="@+id/textView13123"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
             android:layout_marginTop="35dp"
             android:text="MASOOR :"
             android:textColor="#0288D1"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView1312"
             app:layout_constraintTop_toBottomOf="@+id/textView1312" />
 
         <TextView
@@ -156,7 +155,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
-            android:text="/quintil"
+            android:text="/sack"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView13123"
             app:layout_constraintEnd_toEndOf="parent"
@@ -180,13 +179,12 @@
             android:id="@+id/textView131234"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
             android:layout_marginTop="35dp"
             android:text="KUTTI :"
             android:textColor="#0288D1"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView13123"
             app:layout_constraintTop_toBottomOf="@+id/textView13123" />
 
         <TextView
@@ -194,7 +192,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
-            android:text="/quintil"
+            android:text="/sack"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView131234"
             app:layout_constraintEnd_toEndOf="parent"
@@ -218,13 +216,12 @@
             android:id="@+id/textView1312345"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
             android:layout_marginTop="35dp"
             android:text="SARSO KHALI:"
             android:textColor="#0288D1"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView131234"
             app:layout_constraintTop_toBottomOf="@+id/textView131234" />
 
         <TextView
@@ -232,7 +229,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
-            android:text="/quintil"
+            android:text="/sack"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView1312345"
             app:layout_constraintEnd_toEndOf="parent"
@@ -245,7 +242,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:ems="5"
-            android:hint="Price"
+            android:hint="sack"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="@+id/textView1312345"
             app:layout_constraintEnd_toStartOf="@+id/textView1512345"
@@ -256,13 +253,12 @@
             android:id="@+id/textView13123456"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
             android:layout_marginTop="35dp"
             android:text="ALSI KHARI:"
             android:textColor="#0288D1"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView1312345"
             app:layout_constraintTop_toBottomOf="@+id/textView1312345" />
 
         <TextView
@@ -270,7 +266,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
-            android:text="/quintil"
+            android:text="/sack"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView13123456"
             app:layout_constraintEnd_toEndOf="parent"
