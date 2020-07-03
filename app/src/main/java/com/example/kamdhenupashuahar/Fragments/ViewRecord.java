@@ -172,6 +172,7 @@ public class ViewRecord extends Fragment {
                                 FragmentManager fm = getFragmentManager();
                                 FragmentTransaction ft = fm.beginTransaction();
                                 ft.replace(R.id.fragment_place, frag);
+                                ft.addToBackStack(null);
                                 ft.commit();
                             }
                         });

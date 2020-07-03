@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity  {
                         fm = getFragmentManager();
                         ft = fm.beginTransaction();
                         ft.replace(R.id.fragment_place, frag);
+                        ft.addToBackStack(null);
                         ft.commit();
 
                         break;
@@ -82,6 +83,7 @@ public class MainActivity extends AppCompatActivity  {
                         fm = getFragmentManager();
                         ft = fm.beginTransaction();
                         ft.replace(R.id.fragment_place, frag);
+                        ft.addToBackStack(null);
                         ft.commit();
 
                         break;
@@ -90,6 +92,7 @@ public class MainActivity extends AppCompatActivity  {
                         fm = getFragmentManager();
                         ft = fm.beginTransaction();
                         ft.replace(R.id.fragment_place, frag);
+                        ft.addToBackStack(null);
                         ft.commit();
                         break;
                     case R.id.purchaseaddition:
@@ -97,6 +100,7 @@ public class MainActivity extends AppCompatActivity  {
                         fm = getFragmentManager();
                         ft = fm.beginTransaction();
                         ft.replace(R.id.fragment_place, frag);
+                        ft.addToBackStack(null);
                         ft.commit();
                         break;
                     case R.id.addsalesrecord:
@@ -104,6 +108,7 @@ public class MainActivity extends AppCompatActivity  {
                         fm = getFragmentManager();
                         ft = fm.beginTransaction();
                         ft.replace(R.id.fragment_place, frag);
+                        ft.addToBackStack(null);
                         ft.commit();
                         break;
                     case R.id.udhaar:
@@ -111,6 +116,7 @@ public class MainActivity extends AppCompatActivity  {
                         fm = getFragmentManager();
                         ft = fm.beginTransaction();
                         ft.replace(R.id.fragment_place, frag);
+                        ft.addToBackStack(null);
                         ft.commit();
                         break;
 
@@ -119,6 +125,7 @@ public class MainActivity extends AppCompatActivity  {
                         fm = getFragmentManager();
                         ft = fm.beginTransaction();
                         ft.replace(R.id.fragment_place, frag);
+                        ft.addToBackStack(null);
                         ft.commit();
                         break;
                     case R.id.viewStock:
@@ -126,6 +133,7 @@ public class MainActivity extends AppCompatActivity  {
                         fm = getFragmentManager();
                         ft = fm.beginTransaction();
                         ft.replace(R.id.fragment_place, frag);
+                        ft.addToBackStack(null);
                         ft.commit();
                         break;
 

@@ -136,6 +136,7 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
         fm = getFragmentManager();
         ft = fm.beginTransaction();
         ft.replace(R.id.fragment_place, frag);
+        ft.addToBackStack(null);
         ft.commit();
     }
 

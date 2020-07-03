@@ -229,6 +229,7 @@ View root;
                     FragmentManager fm = getFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
                     ft.replace(R.id.fragment_place, frag);
+                    ft.addToBackStack(null);
                     ft.commit();
                 } else {
                     Toast.makeText(getActivity(), "get failed with "+task.getException(), Toast.LENGTH_SHORT).show();
