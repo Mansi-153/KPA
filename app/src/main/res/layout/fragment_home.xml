@@ -482,7 +482,6 @@ tools:context=".Fragments.AddingSalesRecord">
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/sales12345"
         android:layout_width="0dp"
