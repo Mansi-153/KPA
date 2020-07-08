@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:text="CHOKAR TYPE3"
+        android:text="CHOKAR 3"
         android:textColor="#2196F3"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -107,10 +107,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="CHOKAR TYPE1"
+        android:text="CHOKAR 1"
         android:textColor="#2196F3"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView24"
         app:layout_constraintStart_toStartOf="@+id/textView24"
         app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
@@ -130,12 +131,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:layout_marginEnd="20dp"
-        android:text="CHOKAR TYPE2"
+        android:text="CHOKAR 2"
         android:textColor="#2196F3"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView25"
+        app:layout_constraintStart_toStartOf="@+id/textView25"
         app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
     <EditText
