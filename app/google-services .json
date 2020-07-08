@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "32077984921-o1lnlbquh4je4emvoa9nfbe0h1c6sul5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kamdhenupashuahar",
+            "certificate_hash": "4c57973a7934a70899ed32c4f90937cab8280ae9"
+          }
+        },
+        {
           "client_id": "32077984921-s63e6v8vnn8k8tqbs9k3umth9l9u169j.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

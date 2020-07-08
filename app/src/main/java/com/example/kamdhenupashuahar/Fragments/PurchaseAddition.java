@@ -30,14 +30,15 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PurchaseAddition extends Fragment implements AdapterView.OnItemSelectedListener {
+public class PurchaseAddition extends Fragment  {
     View root;
     FirebaseFirestore db;
     ArrayList<String> mylist = new ArrayList<String>();
-    private Spinner spinner;
+    ArrayList<String> mylist1 = new ArrayList<String>();
+    private Spinner spinner,spinner2;
     ImageView fr;
     TextView date,qty,pr;
-    String today,toyear,tomonth,type,quantity,price;
+    String today,toyear,tomonth,type,typeChokar,quantity,price;
     Button add;
     private DatePickerDialog.OnDateSetListener onDateSetListener;
 
@@ -46,6 +47,8 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root= inflater.inflate(R.layout.fragment_purchase_addition, container, false);
+        spinner2 = root.findViewById(R.id.spinner3);
+        spinner2.setVisibility(View.GONE);
         db = FirebaseFirestore.getInstance();
        //getting current day date and setting it to be default
         Calendar cal = Calendar.getInstance();
@@ -70,13 +73,45 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
         mylist.add("Kutti");
         mylist.add("Sarso Khali");
         mylist.add("Alsi Khari");
+
+        mylist1.add("Type 1");mylist1.add("Type 2");mylist1.add("Type 3");
         //Making spinner work
         spinner = root.findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, mylist);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //item type now stored as a string named type
+                type=mylist.get(position);
+                Toast.makeText(getActivity(), type, Toast.LENGTH_SHORT).show();
+                if(type.equals("Chokar")){
+                    spinner2.setVisibility(View.VISIBLE);
+                    ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, mylist1);
+                    adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner2.setAdapter(adapter1);
+                    spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            //item type now stored as a string named type
+                            typeChokar=mylist1.get(position);
+                            Toast.makeText(getActivity(), typeChokar, Toast.LENGTH_SHORT).show();
+                            //now add to database with this type
+                        }
+
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+                }
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
       //populating id
         pr=root.findViewById(R.id.editTextTextPersonName2);
         qty=root.findViewById(R.id.editTextTextPersonName3);
@@ -149,6 +184,9 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
         user.put("Price",Float.parseFloat(pri));
         user.put("Total",Float.parseFloat(qy)*Float.parseFloat(pri));
         user.put("Type",false);
+        if(Type.equals("Chokar")){
+            user.put("TypeChokar",typeChokar);
+        }
         // Add a new document with a generated ID
         db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("SalesPurchase").document(Type).update("ArraySales", FieldValue.arrayUnion(user));
   //now Add data to update Stock
@@ -165,14 +203,40 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
                     if (document.exists()) {
                         Log.d("mansiiiiiiiiiiiiiiiiiii", "DocumentSnapshot data: " + document.getData());
                       //  Double stock;
-                        if(Type.equals("TABLE1")){
-                            stock[0] =document.getDouble("Bhoosa");
-                        }else{
-                            stock[0] =document.getDouble(Type);
+
+                        //check for chokar type if there is chokar
+                        if(Type.equals("Chokar")){
+                            switch (typeChokar){
+                                case "Type 1": stock[0] = document.getDouble("Chokar1");
+                                    stock[0] = stock[0] + Double.parseDouble(str);
+                                    db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock")
+                                            .update("Chokar1", stock[0]);
+                                    break;
+                                case "Type 2": stock[0] = document.getDouble("Chokar2");
+                                    stock[0] = stock[0] + Double.parseDouble(str);
+                                    db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock")
+                                            .update("Chokar2", stock[0]);
+                                    break;
+                                case "Type 3": stock[0] = document.getDouble("Chokar3");
+                                    stock[0] = stock[0] + Double.parseDouble(str);
+                                    db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock")
+                                            .update("Chokar3", stock[0]);
+                                    break;
+                            }
                         }
-                       stock[0]=stock[0]+Double.parseDouble(str);
-                       db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock")
-                               .update(Type, stock[0]);
+                        else {
+                            if(Type.equals("TABLE1")){
+                                stock[0] =document.getDouble("Bhoosa");
+                                stock[0] = stock[0] + Double.parseDouble(str);
+                                db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock")
+                                        .update("Bhoosa", stock[0]);
+                            }else {
+                                stock[0] = document.getDouble(Type);
+                                stock[0] = stock[0] + Double.parseDouble(str);
+                                db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock")
+                                        .update(Type, stock[0]);
+                            }
+                        }
                     } else {
                         Log.d("", "No such document");
                     }
@@ -220,16 +284,4 @@ public class PurchaseAddition extends Fragment implements AdapterView.OnItemSele
 
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        //item type now stored as a string named type
-        type=mylist.get(position);
-        Toast.makeText(getActivity(), type, Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 }

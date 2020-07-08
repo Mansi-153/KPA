@@ -9,10 +9,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,11 +30,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddingSalesRecord extends Fragment {
+public class AddingSalesRecord extends Fragment implements AdapterView.OnItemSelectedListener {
     View root;
     FirebaseFirestore db;
     ImageView fr;
@@ -41,6 +45,9 @@ public class AddingSalesRecord extends Fragment {
     String today,toyear,tomonth;
     SessionActivity sessionActivity;
     private DatePickerDialog.OnDateSetListener onDateSetListener;
+    ArrayList<String> mylist = new ArrayList<String>();
+    private Spinner spinner;
+    String chokartype;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,6 +55,14 @@ public class AddingSalesRecord extends Fragment {
         root= inflater.inflate(R.layout.fragment_adding_sales_record, container, false);
         sessionActivity = new SessionActivity(getActivity());
         Initialization();
+        //spinner at work
+        //Making spinner work
+        spinner = root.findViewById(R.id.spinner2);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_item, mylist);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
         //Date picker At WORK
         setNormalPicker(inflater,container);
         add.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +123,9 @@ public class AddingSalesRecord extends Fragment {
         user.put("Price",Float.parseFloat(pri));
         user.put("Total",Float.parseFloat(qy)*Float.parseFloat(pri));
         user.put("Type",true);
+        if(Type.equals("Chokar")){
+            user.put("TypeChokar",chokartype);
+        }
         // Add a new document with a generated ID
         db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("SalesPurchase").document(Type).update("ArraySales", FieldValue.arrayUnion(user));
         //now Add data to update Stock
@@ -122,14 +140,40 @@ public class AddingSalesRecord extends Fragment {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         //  Double stock;
-                        if(Type.equals("TABLE1")){
-                            stock[0] =document.getDouble(Type);
-                        }else{
-                            stock[0] =document.getDouble(Type);
+
+                        //check for chokar type if there is chokar
+                        if(Type.equals("Chokar")){
+                            switch (chokartype){
+                                case "Type 1": stock[0] = document.getDouble("Chokar1");
+                                    stock[0] = stock[0] - Double.parseDouble(str);
+                                    db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock")
+                                            .update("Chokar1", stock[0]);
+                                break;
+                                case "Type 2": stock[0] = document.getDouble("Chokar2");
+                                    stock[0] = stock[0] - Double.parseDouble(str);
+                                    db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock")
+                                            .update("Chokar2", stock[0]);
+                                    break;
+                                case "Type 3": stock[0] = document.getDouble("Chokar3");
+                                    stock[0] = stock[0] - Double.parseDouble(str);
+                                    db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock")
+                                            .update("Chokar3", stock[0]);
+                                    break;
+                            }
                         }
-                        stock[0]=stock[0]-Double.parseDouble(str);
-                        db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock")
-                                .update(Type, stock[0]);
+                        else {
+                            if(Type.equals("TABLE1")){
+                                stock[0] =document.getDouble("Bhoosa");
+                                stock[0] = stock[0] - Double.parseDouble(str);
+                                db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock")
+                                        .update("Bhoosa", stock[0]);
+                            }else {
+                                stock[0] = document.getDouble(Type);
+                                stock[0] = stock[0] - Double.parseDouble(str);
+                                db.collection("Database").document("irytBOPTVitXVRh5vB51").collection("Stock").document("stock")
+                                        .update(Type, stock[0]);
+                            }
+                        }
                     } else {
                         Log.d("", "No such document");
                     }
@@ -218,6 +262,7 @@ public class AddingSalesRecord extends Fragment {
         AKprice=root.findViewById(R.id.textView9123456);
         AKqty=root.findViewById(R.id.textView7123456);
         add=root.findViewById(R.id.add);
+        mylist.add("Type 1");mylist.add("Type 2");mylist.add("Type 3");
         db = FirebaseFirestore.getInstance();
 
         /*Bprice.setText(String.valueOf(sessionActivity.getBPrice()));
@@ -227,5 +272,16 @@ public class AddingSalesRecord extends Fragment {
         Kprice.setText(String.valueOf(sessionActivity.getKPrice()));
         AKprice.setText(String.valueOf(sessionActivity.getAkPrice()));
         SKprice.setText(String.valueOf(sessionActivity.getSPrice()));*/
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        chokartype=mylist.get(position);
+        //Toast.makeText(getActivity(), type, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
